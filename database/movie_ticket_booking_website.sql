@@ -573,7 +573,6 @@ INSERT INTO `payment` (`id`, `payment_time`, `amount`, `method`, `customer_email
 (4, '2023-08-20 10:44:19', 700, 'Bkash', 'neloy.saha456@gmail.com'),
 (5, '2023-08-20 12:24:02', 700, 'Debit Card', 'neloy.saha456@gmail.com'),
 (6, '2023-08-20 12:40:15', 1050, 'Nagad', 'adib@yahoo.com'),
-(7, '2023-08-20 12:41:00', 900, 'Nagad', 'adib@yahoo.com'),
 (8, '2023-08-20 14:36:08', 2700, 'Bkash', 'sazin@gmail.com'),
 (9, '2023-08-20 16:13:23', 700, 'Bkash', 'neloy.saha456@gmail.com'),
 (10, '2023-08-20 17:56:07', 900, 'Bkash', 'farhan@gmail.com');
