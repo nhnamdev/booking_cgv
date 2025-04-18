@@ -1,7 +1,7 @@
 export const SocialLinks = () => {
   return (
     <section className="section-social-links">
-      <a href="https://github.com/NeloySaha" className="social-link">
+      <a href="https://www.facebook.com/61namit/" className="social-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="social-link-icon"
@@ -14,7 +14,7 @@ export const SocialLinks = () => {
         </svg>
       </a>
 
-      <a href="https://github.com/NeloySaha" className="social-link">
+      <a href="https://www.instagram.com/hoangnam_it/" className="social-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="social-link-icon"
@@ -25,7 +25,7 @@ export const SocialLinks = () => {
         </svg>
       </a>
 
-      <a href="https://github.com/NeloySaha" className="social-link">
+      <a href="#" className="social-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="social-link-icon"
@@ -35,7 +35,7 @@ export const SocialLinks = () => {
         </svg>
       </a>
 
-      <a href="https://github.com/NeloySaha" className="social-link">
+      <a href="https://www.tiktok.com/@migidev" className="social-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="social-link-icon"
@@ -45,7 +45,7 @@ export const SocialLinks = () => {
         </svg>
       </a>
 
-      <a href="https://github.com/NeloySaha" className="social-link">
+      <a href="#" className="social-link">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="social-link-icon"

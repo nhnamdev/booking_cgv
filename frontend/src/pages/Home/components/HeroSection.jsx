@@ -35,10 +35,10 @@ export const HeroSection = () => {
               }}
               className="btn btn-full"
             >
-              Buy a ticket
+              Mua vé
             </button>
             <HashLink to="#nowShowing" className="btn btn-outline">
-              Learn more &darr;
+            Xem thêm &darr;
             </HashLink>
           </div>
 

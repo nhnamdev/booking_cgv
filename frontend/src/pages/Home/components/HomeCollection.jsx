@@ -42,7 +42,7 @@ export const HomeCollection = () => {
     <section className="section-home-collection" id="nowShowing">
       <div className="home-collection-heading-container">
         <h1 className="heading-secondary heading-collection">
-          Now Playing &rarr;
+          Phim Mới &rarr;
         </h1>
       </div>
 

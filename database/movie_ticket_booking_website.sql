@@ -1,5 +1,3 @@
-
-
 CREATE DATABASE movie_ticket_booking_website
 
 CREATE TABLE `features` (
@@ -27,12 +25,6 @@ INSERT INTO `features` (`id`, `title`, `description`, `image_path`, `theatre_id`
 
 (9, 'Không Gian Sang Trọng', 'Trước và sau buổi chiếu, hãy thư giãn tại khu lounge cao cấp của CGV với ghế ngồi êm ái, thiết kế hiện đại và không gian riêng tư – sẵn sàng mang đến trải nghiệm điện ảnh đẳng cấp.', '/Images/features/lounge.webp', 2);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `hall`
---
-
 CREATE TABLE `hall` (
   `id` int(11) NOT NULL,
   `name` varchar(10) DEFAULT NULL,
@@ -40,9 +32,7 @@ CREATE TABLE `hall` (
   `theatre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `hall`
---
+
 
 INSERT INTO `hall` (`id`, `name`, `total_seats`, `theatre_id`) VALUES
 (1, 'Hall 1', 48, 1),
@@ -54,20 +44,13 @@ INSERT INTO `hall` (`id`, `name`, `total_seats`, `theatre_id`) VALUES
 (7, 'Hall 3', 48, 2),
 (8, 'Hall 4', 48, 2);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `hallwise_seat`
---
 
 CREATE TABLE `hallwise_seat` (
   `hall_id` int(11) NOT NULL,
   `seat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `hallwise_seat`
---
+
 
 INSERT INTO `hallwise_seat` (`hall_id`, `seat_id`) VALUES
 (1, 1),
@@ -455,11 +438,6 @@ INSERT INTO `hallwise_seat` (`hall_id`, `seat_id`) VALUES
 (8, 47),
 (8, 48);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `movie`
---
 
 CREATE TABLE `movie` (
   `id` int(11) NOT NULL,
@@ -473,9 +451,6 @@ CREATE TABLE `movie` (
   `release_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `movie`
---
 
 INSERT INTO `movie` (`id`, `name`, `image_path`, `language`, `synopsis`, `rating`, `duration`, `top_cast`, `release_date`) VALUES
 (1, 'Người Nhện: Du Hành Vũ Trụ Nhện', '/Images/movies/spiderman.webp', 'English', 'Miles Morales bước vào thế giới Đa Vũ Trụ và đối mặt với hàng loạt Người Nhện khác nhau. Khi xảy ra mâu thuẫn về cách xử lý hiểm họa mới, Miles phải học cách trở thành một người hùng theo cách riêng của mình.', 8.8, '2h 16m', 'Oscar Isaac', '2023-06-23'),
@@ -490,20 +465,12 @@ INSERT INTO `movie` (`id`, `name`, `image_path`, `language`, `synopsis`, `rating
 
 (6, 'Barbie: Thế Giới Thực', '/Images/movies/barbie.webp', 'English', 'Barbie và Ken rời khỏi vùng đất mộng mơ để khám phá thế giới thực. Những điều kỳ diệu và rắc rối xảy đến khi họ phải đối mặt với thực tế phức tạp của con người.', 7.6, '1h 54m', 'Margot Robbie', '2023-07-21');
 
--- --------------------------------------------------------
 
---
--- Table structure for table `movie_directors`
---
 
 CREATE TABLE `movie_directors` (
   `movie_id` int(11) NOT NULL,
   `director` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `movie_directors`
---
 
 INSERT INTO `movie_directors` (`movie_id`, `director`) VALUES
 (1, 'Joaquim Dos Santos'),
@@ -515,44 +482,31 @@ INSERT INTO `movie_directors` (`movie_id`, `director`) VALUES
 (5, 'Christopher Nolan'),
 (6, 'Greta Gerwig');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `movie_genre`
---
-
 CREATE TABLE `movie_genre` (
   `movie_id` int(11) NOT NULL,
   `genre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `movie_genre`
---
+
 
 INSERT INTO `movie_genre` (`movie_id`, `genre`) VALUES
-(1, 'Action'),
-(1, 'Adventure'),
-(1, 'Animation'),
-(2, 'Action'),
-(2, 'Thriller'),
-(3, 'Comedy'),
-(3, 'Mystery'),
-(4, 'Action'),
-(4, 'Adventure'),
-(4, 'Thriller'),
-(5, 'Biography'),
-(5, 'Drama'),
-(5, 'History'),
-(6, 'Adventure'),
-(6, 'Comedy'),
-(6, 'Fantasy');
+(1, 'Hành động'),
+(1, 'Phiêu lưu'),
+(1, 'Hoạt hình'),
+(2, 'Hành động'),
+(2, 'Giật gân'),
+(3, 'Hài hước'),
+(3, 'Trinh thám'),
+(4, 'Hành động'),
+(4, 'Phiêu lưu'),
+(4, 'Giật gân'),
+(5, 'Tiểu sử'),
+(5, 'Chính kịch'),
+(5, 'Lịch sử'),
+(6, 'Phiêu lưu'),
+(6, 'Hài hước'),
+(6, 'Kỳ ảo');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `payment`
---
 
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
@@ -562,9 +516,6 @@ CREATE TABLE `payment` (
   `customer_email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `payment`
---
 
 INSERT INTO `payment` (`id`, `payment_time`, `amount`, `method`, `customer_email`) VALUES
 (1, '2023-08-16 19:41:37', 140000, 'Cash', 'Belal123@gmail.com'),
@@ -576,12 +527,7 @@ INSERT INTO `payment` (`id`, `payment_time`, `amount`, `method`, `customer_email
 (7, '2023-08-20 16:13:23', 70000, 'Cash', 'neloy.saha456@gmail.com'),
 (8, '2023-08-20 17:56:07', 90000, 'Cash', 'farhan@gmail.com');
 
--- --------------------------------------------------------
 
-
---
--- Table structure for table `person`
---
 
 CREATE TABLE `person` (
   `email` varchar(100) NOT NULL,
@@ -593,9 +539,7 @@ CREATE TABLE `person` (
   `person_type` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `person`
---
+
 
 INSERT INTO `person` (`email`, `first_name`, `last_name`, `password`, `phone_number`, `account_balance`, `person_type`) VALUES
 ('admin@gmail.com', 'Admin', 'Nam', 'Admin12345', '17579120791', 100000, 'Admin'),
@@ -610,20 +554,11 @@ INSERT INTO `person` (`email`, `first_name`, `last_name`, `password`, `phone_num
 ('rahim123@gmail.com', 'Rahim', 'Sheikh', '123', '01757912079', 100000, 'Customer'),
 ('sazin@gmail.com', 'Sazin', 'Haque', 'sazin1234', '01757912079', 100000, 'Customer');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `seat`
---
 
 CREATE TABLE `seat` (
   `id` int(11) NOT NULL,
   `name` char(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `seat`
---
 
 INSERT INTO `seat` (`id`, `name`) VALUES
 (1, 'A1'),
@@ -675,11 +610,6 @@ INSERT INTO `seat` (`id`, `name`) VALUES
 (47, 'F7'),
 (48, 'F8');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `shown_in`
---
 
 CREATE TABLE `shown_in` (
   `movie_id` int(11) NOT NULL,
@@ -687,9 +617,7 @@ CREATE TABLE `shown_in` (
   `hall_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `shown_in`
---
+
 
 INSERT INTO `shown_in` (`movie_id`, `showtime_id`, `hall_id`) VALUES
 (1, 1, 1),
@@ -789,11 +717,7 @@ INSERT INTO `shown_in` (`movie_id`, `showtime_id`, `hall_id`) VALUES
 (6, 12, 2),
 (6, 12, 6);
 
--- --------------------------------------------------------
 
---
--- Table structure for table `showtimes`
---
 
 CREATE TABLE `showtimes` (
   `id` int(11) NOT NULL,
@@ -803,9 +727,7 @@ CREATE TABLE `showtimes` (
   `price_per_seat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `showtimes`
---
+
 
 INSERT INTO `showtimes` (`id`, `movie_start_time`, `show_type`, `showtime_date`, `price_per_seat`) VALUES
 (1, '11:00 am', '2D', '2025-04-22', 120000),
@@ -821,11 +743,6 @@ INSERT INTO `showtimes` (`id`, `movie_start_time`, `show_type`, `showtime_date`,
 (11, '2:30 pm', '3D', '2025-04-23', 150000),
 (12, '6:00 pm', '3D', '2025-04-22', 150000);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `theatre`
---
 
 CREATE TABLE `theatre` (
   `id` int(11) NOT NULL,
@@ -834,20 +751,12 @@ CREATE TABLE `theatre` (
   `location_details` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `theatre`
---
 
 INSERT INTO `theatre` (`id`, `name`, `location`, `location_details`) VALUES
 (1, 'CGV Aeon Mall Tân Phú', 'Tân Phú', 'Tầng 3, Aeon Mall Tân Phú Celadon, Số 30 Bờ Bao Tân Thắng, P. Sơn Kỳ, Q. Tân Phú, TP. HCM'),
 (2, 'CGV Vincom Đồng Khởi', 'Quận 1', 'Tầng 3, Trung tâm thương mại Vincom Đồng Khởi, 72 Lê Thánh Tôn, Q.1, TP. HCM');
 
 
--- --------------------------------------------------------
-
---
--- Table structure for table `ticket`
---
 
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
@@ -860,9 +769,7 @@ CREATE TABLE `ticket` (
   `showtimes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `ticket`
---
+
 
 INSERT INTO `ticket` (`id`, `price`, `purchase_date`, `payment_id`, `seat_id`, `hall_id`, `movie_id`, `showtimes_id`) VALUES
 (1, 150000, '2023-08-17', 2, 3, 1, 5, 3),
@@ -891,91 +798,60 @@ INSERT INTO `ticket` (`id`, `price`, `purchase_date`, `payment_id`, `seat_id`, `
 (24, 150000, '2023-08-20', 8, 21, 5, 5, 5),
 (25, 150000, '2023-08-20', 8, 22, 5, 5, 5);
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `features`
---
 ALTER TABLE `features`
   ADD PRIMARY KEY (`id`),
   ADD KEY `theatre_id` (`theatre_id`);
 
---
--- Indexes for table `hall`
---
+
 ALTER TABLE `hall`
   ADD PRIMARY KEY (`id`),
   ADD KEY `theatre_id` (`theatre_id`);
 
---
--- Indexes for table `hallwise_seat`
---
+
 ALTER TABLE `hallwise_seat`
   ADD PRIMARY KEY (`hall_id`,`seat_id`),
   ADD KEY `seat_id` (`seat_id`);
 
---
--- Indexes for table `movie`
---
+
 ALTER TABLE `movie`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `movie_directors`
---
+
 ALTER TABLE `movie_directors`
   ADD PRIMARY KEY (`movie_id`,`director`);
 
---
--- Indexes for table `movie_genre`
---
+
 ALTER TABLE `movie_genre`
   ADD PRIMARY KEY (`movie_id`,`genre`);
 
---
--- Indexes for table `payment`
---
+
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_email` (`customer_email`);
 
---
--- Indexes for table `person`
---
+
 ALTER TABLE `person`
   ADD PRIMARY KEY (`email`);
 
---
--- Indexes for table `seat`
---
+
 ALTER TABLE `seat`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `shown_in`
---
+
 ALTER TABLE `shown_in`
   ADD PRIMARY KEY (`movie_id`,`showtime_id`,`hall_id`),
   ADD KEY `showtime_id` (`showtime_id`),
   ADD KEY `hall_id` (`hall_id`);
 
---
--- Indexes for table `showtimes`
---
+
 ALTER TABLE `showtimes`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `theatre`
---
+
 ALTER TABLE `theatre`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `ticket`
---
 ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
   ADD KEY `showtimes_id` (`showtimes_id`),
@@ -984,108 +860,55 @@ ALTER TABLE `ticket`
   ADD KEY `hall_id` (`hall_id`),
   ADD KEY `movie_id` (`movie_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `features`
---
 ALTER TABLE `features`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
---
--- AUTO_INCREMENT for table `hall`
---
 ALTER TABLE `hall`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
--- AUTO_INCREMENT for table `movie`
---
 ALTER TABLE `movie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
---
--- AUTO_INCREMENT for table `payment`
---
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
---
--- AUTO_INCREMENT for table `seat`
---
 ALTER TABLE `seat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
---
--- AUTO_INCREMENT for table `showtimes`
---
 ALTER TABLE `showtimes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
---
--- AUTO_INCREMENT for table `theatre`
---
 ALTER TABLE `theatre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `ticket`
---
+
 ALTER TABLE `ticket`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `features`
---
 ALTER TABLE `features`
   ADD CONSTRAINT `features_ibfk_1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `hall`
---
 ALTER TABLE `hall`
   ADD CONSTRAINT `hall_ibfk_1` FOREIGN KEY (`theatre_id`) REFERENCES `theatre` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `hallwise_seat`
---
 ALTER TABLE `hallwise_seat`
   ADD CONSTRAINT `hallwise_seat_ibfk_1` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `hallwise_seat_ibfk_2` FOREIGN KEY (`seat_id`) REFERENCES `seat` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `movie_directors`
---
 ALTER TABLE `movie_directors`
   ADD CONSTRAINT `movie_directors_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `movie_genre`
---
 ALTER TABLE `movie_genre`
   ADD CONSTRAINT `movie_genre_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE;
-
 
 ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`customer_email`) REFERENCES `person` (`email`);
 
---
--- Constraints for table `shown_in`
---
 ALTER TABLE `shown_in`
   ADD CONSTRAINT `shown_in_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `shown_in_ibfk_2` FOREIGN KEY (`showtime_id`) REFERENCES `showtimes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `shown_in_ibfk_3` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`) ON DELETE CASCADE;
 
---
--- Constraints for table `ticket`
---
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`showtimes_id`) REFERENCES `showtimes` (`id`),
   ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`payment_id`) REFERENCES `payment` (`id`),
