@@ -1,38 +1,42 @@
-# ASHO DEKHI - Movie Ticket Booking Website
+# 🎬 CGV VIỆT NAM - Ứng dụng Đặt Vé Xem Phim Trực Tuyến
 
-Welcome to ASHO DEKHI, your one-stop destination for booking movie tickets online. This repository contains the codebase for the ASHO DEKHI website, built using React, Express, MySQL, and Node.js.
+Chào mừng bạn đến với **CGV Việt Nam**, nền tảng đặt vé xem phim trực tuyến tiện lợi và hiện đại. Kho lưu trữ này chứa toàn bộ mã nguồn của website CGV, được xây dựng bằng React, Express, MySQL và Node.js.
 
-### 🚀 VISIT LIVE DEMO _[HERE](https://asho-dekhi.vercel.app/)_
+> ⛔ **Lưu ý**: Đây là phiên bản demo thử nghiệm, **không sử dụng thanh toán thật**. Dữ liệu chỉ phục vụ mục đích trình diễn chức năng.
 
-**N.B.: Since this is a test application 🛠️, purchasing tickets won't cost you any real money 💰. So, don't forget to buy tickets 😎.
-_Backend/API is hosted at render.com on free tier. So, it goes inactive after 15 minutes of inactivity. So, if you see something loading, please wait for 15-30 seconds😉._**
+## 🎯 Tính Năng Nổi Bật
 
-## Features 🛠️
+- 📽 **Duyệt & Lọc Danh Sách Phim**
+- 🎞 **Xem Chi Tiết Phim**
+- 🕑 **Tra Cứu Suất Chiếu**
+- 🎟 **Đặt Vé Xem Phim**
+- 🔐 **Đăng Ký & Đăng Nhập Người Dùng**
+- 📒 **Lịch Sử Mua Vé Cá Nhân**
+- 🛠️ **Quản Trị Phim & Lịch Chiếu (Admin Panel)**
+- 📱 **Giao Diện Responsive, Tối Ưu Trên Mọi Thiết Bị**
+---
 
-- 🎬 Browse and Filter Movies
+---
 
-- 🎥 View Movie Details
+## ⚙️ Công Nghệ Sử Dụng
 
-- 🕒 Check Showtimes
+| Phần | Công Nghệ |
+|------|------------|
+| **Client (Frontend)** | React, CSS, Vite |
+| **Server (Backend/API)** | Node.js, Express |
+| **Cơ sở dữ liệu** | MySQL |
+| **Hosting** | Vercel (frontend), Render.com (backend) |
 
-- 🎫 Book Tickets
+---
+## 🇻🇳 Về CGV Việt Nam
+> **CÔNG TY TNHH CJ CGV VIỆT NAM**  
+> Tầng 2, Tòa nhà Rivera Park Saigon  
+> Số 7/28 Thành Thái, Phường 14, Quận 10, TP. Hồ Chí Minh, Việt Nam
+---
+## 📜 Giấy Phép
 
-- 🔐 User Authentication and Registration
+Dự án này được phát hành dưới [Giấy phép GNU GPL v3.0 hoặc mới hơn](https://www.gnu.org/licenses/gpl-3.0.html).
 
-- 📚 User Purchase History
+## ❤️ Cảm ơn bạn đã ghé thăm!
 
-- 🛠 Admin Panel
-
-- 📱 Fully Responsive User-friendly UI
-
-## Sneak Peek 👀
-
-![Payment](/demo/Purchase1.png)![Payment](/demo/Purchase2.png)
-
-## Tech Stack💻
-
-**Client/Front-End:** React, CSS
-
-**Server/BackEnd/API:** Node, Express
-
-**Database:** MySQL
+Nếu bạn muốn đóng góp, tạo issue, hay cải thiện hệ thống, hãy tạo pull request nhé. CGV luôn chào đón mọi nhà phát triển yêu phim ảnh! 🎞
