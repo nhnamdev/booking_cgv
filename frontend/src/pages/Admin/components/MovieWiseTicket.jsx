@@ -22,7 +22,7 @@ export const MovieWiseTicket = () => {
   const ticketDataHtml = ticketData.map((ticket, idx) => {
     return (
       <div key={idx} className="movie-ticket">
-        <p>{ticket.tickets_per_movie}</p>
+        <p>{ticket.tickets_per_movie} Vé</p>
         <p>{ticket.name}</p>
       </div>
     );
@@ -30,7 +30,7 @@ export const MovieWiseTicket = () => {
 
   return (
     <section className="admin-movie-wise-ticket container">
-      <h3 className="form-admin-heading">Tickets Sold per Movie</h3>
+      <h3 className="form-admin-heading">Vé bán ra cho mỗi bộ phim</h3>
 
       {ticketData.length > 0 && (
         <div className="movie-ticket-container">{ticketDataHtml}</div>

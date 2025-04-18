@@ -62,7 +62,7 @@ export const AdminDashboardPrimary = () => {
             </p>
           )}
           <div className="admin-dashboard-category">
-            <p>Total Tickets Sold</p>
+            <p>Tổng Số Vé Đã Bán</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="admin-icon"
@@ -113,14 +113,14 @@ export const AdminDashboardPrimary = () => {
             <HashLoader size={30} color="#eb3656" />
           ) : (
             <p className="admin-dashboard-val">
-              BDT{" "}
+              {" "}
               {paymentData.length > 0 &&
                 paymentData[0].total_amount.toLocaleString("en-US")}
-              Tk
+                VND
             </p>
           )}
           <div className="admin-dashboard-category">
-            <p>Total Payment Received</p>
+            <p>Tổng số tiền thanh toán</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="admin-icon"
@@ -159,7 +159,7 @@ export const AdminDashboardPrimary = () => {
             </p>
           )}
           <div className="admin-dashboard-category">
-            <p>Total Customers</p>
+            <p>Tổng số User</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="admin-icon"
