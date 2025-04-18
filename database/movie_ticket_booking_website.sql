@@ -35,14 +35,14 @@ CREATE TABLE `hall` (
 
 
 INSERT INTO `hall` (`id`, `name`, `total_seats`, `theatre_id`) VALUES
-(1, 'Hall 1', 48, 1),
-(2, 'Hall 2', 48, 1),
-(3, 'Hall 3', 48, 1),
-(4, 'Hall 4', 48, 1),
-(5, 'Hall 1', 48, 2),
-(6, 'Hall 2', 48, 2),
-(7, 'Hall 3', 48, 2),
-(8, 'Hall 4', 48, 2);
+(1, 'Phòng 1', 48, 1),
+(2, 'Phòng 2', 48, 1),
+(3, 'Phòng 3', 48, 1),
+(4, 'Phòng 4', 48, 1),
+(5, 'Phòng 1', 48, 2),
+(6, 'Phòng 2', 48, 2),
+(7, 'Phòng 3', 48, 2),
+(8, 'Phòng 4', 48, 2);
 
 
 CREATE TABLE `hallwise_seat` (
