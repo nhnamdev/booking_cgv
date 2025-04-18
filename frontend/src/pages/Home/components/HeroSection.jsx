@@ -16,17 +16,15 @@ export const HeroSection = () => {
     <section className="section-hero">
       <div className="container hero">
         <div className="hero-text">
-          <h1 className="heading-primary">
-            <TextEffect preset="slide">
-              Unlock the Gateway to Enchanting Movie Magic
-            </TextEffect>
-          </h1>
+        <h1 className="heading-primary">
+  <TextEffect preset="slide">
+    Mở Cánh Cửa Đến Thế Giới Điện Ảnh Diệu Kỳ
+  </TextEffect>
+</h1>
 
-          <p className="hero-description">
-            Immerse yourself in the captivating allure of cinema as you step
-            into our exquisite destination, designed to elevate your
-            movie-watching experience to new heights.
-          </p>
+<p className="hero-description">
+  Đắm chìm trong sức hút kỳ diệu của điện ảnh khi bạn bước vào không gian trải nghiệm đẳng cấp tại CGV – nơi mỗi khoảnh khắc trên màn ảnh trở nên sống động và đáng nhớ hơn bao giờ hết.
+</p>
           <div className="hero-btn-container">
             <button
               onClick={() => {
