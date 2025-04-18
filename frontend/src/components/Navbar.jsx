@@ -120,7 +120,7 @@ export const Navbar = () => {
               to="/"
               style={pageName === "home" ? selectionTab : {}}
             >
-              Home
+              Trang chủ
             </Link>
           </li>
           <li>
@@ -129,7 +129,7 @@ export const Navbar = () => {
               to="/showtimes"
               style={pageName === "showtimes" ? selectionTab : {}}
             >
-              Showtimes
+              Lịch chiếu phim
             </Link>
           </li>
           <li>
@@ -138,7 +138,7 @@ export const Navbar = () => {
               to="/aboutus"
               style={pageName === "aboutUs" ? selectionTab : {}}
             >
-              About Us
+              Liên hệ
             </Link>
           </li>
           {isAuthenticated && signedPerson.person_type === "Admin" && (
