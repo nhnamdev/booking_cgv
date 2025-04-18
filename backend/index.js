@@ -3,7 +3,7 @@ const mysql = require("mysql");
 const cors = require("cors");
 require("dotenv").config();
 
-console.log("🧪 ENV loaded:");
+console.log("ENV loaded:");
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_NAME =", process.env.DB_NAME);
 const port = process.env.PORT || 7000;
@@ -11,6 +11,7 @@ const app = express();
 
 app.use(
   cors({
+    //Chỉ định các địa chỉ frontend được phép gọi API từ backend
     origin: ["http://localhost:5173", "http://localhost:3000"],
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
@@ -28,7 +29,7 @@ const configuration = {
   database: process.env.DB_NAME,
 };
 
-// Manually setting connection
+//  setting connection
 function handleDisconnect() {
   db = mysql.createConnection(configuration);
 
