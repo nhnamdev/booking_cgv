@@ -25,7 +25,7 @@ Chào mừng bạn đến với **CGV Việt Nam**, nền tảng đặt vé xem 
 | **Client (Frontend)** | React, CSS, Vite |
 | **Server (Backend/API)** | Node.js, Express |
 | **Cơ sở dữ liệu** | MySQL |
-| **Hosting** | Vercel (frontend), Render.com (backend) |
+
 
 ---
 ## 🇻🇳 Về CGV Việt Nam
