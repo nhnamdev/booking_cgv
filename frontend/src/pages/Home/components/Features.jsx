@@ -36,7 +36,7 @@ export const Features = () => {
     <section className="section-features container">
       <h4 className="subheading">What you&apos;ll get?</h4>
       <h2 className="section-features-heading heading-secondary">
-        Unleash the Movie Magic and Discover Our Spectacular Features
+      Trải Nghiệm Điện Ảnh Đỉnh Cao – Khám Phá Những Điều Đặc Biệt Chỉ Có Tại CGV
       </h2>
 
       {loading ? (

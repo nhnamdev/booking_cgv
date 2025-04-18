@@ -1,16 +1,6 @@
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
 
 CREATE DATABASE movie_ticket_booking_website
-
--- Database: `movie_ticket_booking_website`
---
-
--
 
 CREATE TABLE `features` (
   `id` int(11) NOT NULL,
@@ -20,19 +10,22 @@ CREATE TABLE `features` (
   `theatre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `features`
---
-
 INSERT INTO `features` (`id`, `title`, `description`, `image_path`, `theatre_id`) VALUES
-(1, 'Unparalleled Cinematic Experience', 'Immerse yourself in stunning visuals and crystal-clear sound, as our state-of-the-art IMAX technology transports you directly into the heart of the action. With a screen that stretches beyond your peripheral vision every frame comes alive with unparalleled brilliance.', '/Images/features/imax.webp', 1),
-(2, 'Delight in Dolby Atmos', 'Experience sound like never before with Dolby Atmos, the epitome audio technology that takes you on an immersive sonic journey.With sound objects moving seamlessly around the theatre, you\'ll be transported into the heart of every scene, making you an integral part of the story.', '/Images/features/sound.webp', 1),
-(3, 'Tantalizing Treats', 'At our movie theatre, we take your movie-watching experience beyond the screen by offering a delectable array of food items at our concession stand. From freshly buttered popcorn, crispy nachos with zesty cheese dips, to gourmet hotdogs and a variety of refreshing beverages, our concession stand is a culinary paradise for movie enthusiasts.', '/Images/features/food.webp', 1),
-(4, 'Luxurious Escape', 'Step into a world of opulence and relaxation, designed to cater to your every need before and after the main event. Our Premium Lounge welcomes you with plush leather seating, elegant décor, and a refined ambiance that sets the stage for an unforgettable cinematic journey.', '/Images/features/lounge.webp', 1),
-(6, 'Unparalleled Cinematic Experience', 'Immerse yourself in stunning visuals and crystal-clear sound, as our state-of-the-art IMAX technology transports you directly into the heart of the action. With a screen that stretches beyond your peripheral vision every frame comes alive with unparalleled brilliance.', '/Images/features/imax.webp', 2),
-(7, 'Delight in Dolby Atmos', 'Experience sound like never before with Dolby Atmos, the epitome audio technology that takes you on an immersive sonic journey.With sound objects moving seamlessly around the theatre, you\'ll be transported into the heart of every scene, making you an integral part of the story.', '/Images/features/sound.webp', 2),
-(8, 'Tantalizing Treats', 'At our movie theatre, we take your movie-watching experience beyond the screen by offering a delectable array of food items at our concession stand. From freshly buttered popcorn, crispy nachos with zesty cheese dips, to gourmet hotdogs and a variety of refreshing beverages, our concession stand is a culinary paradise for movie enthusiasts.', '/Images/features/food.webp', 2),
-(9, 'Luxurious Escape', 'Step into a world of opulence and relaxation, designed to cater to your every need before and after the main event. Our Premium Lounge welcomes you with plush leather seating, elegant décor, and a refined ambiance that sets the stage for an unforgettable cinematic journey.', '/Images/features/lounge.webp', 2);
+(1, 'Trải Nghiệm Điện Ảnh Đỉnh Cao', 'Đắm chìm trong hình ảnh sắc nét và âm thanh sống động với công nghệ IMAX hiện đại tại CGV. Màn hình siêu rộng cùng chất lượng trình chiếu đỉnh cao mang đến cảm giác như đang ở giữa những cảnh quay mãn nhãn.', '/Images/features/imax.webp', 1),
+
+(2, 'Âm Thanh Dolby Atmos Đỉnh Cao', 'Cảm nhận âm thanh như thật với công nghệ Dolby Atmos – nơi âm thanh chuyển động khắp không gian, đưa bạn vào trung tâm câu chuyện với từng chi tiết sống động, chân thật đến khó tin.', '/Images/features/sound.webp', 1),
+
+(3, 'Ẩm Thực Hấp Dẫn', 'Không chỉ xem phim, bạn còn được thưởng thức các món ăn hấp dẫn tại CGV: bắp rang bơ nóng hổi, nachos phô mai béo ngậy, xúc xích kiểu Âu và các loại nước giải khát phong phú. Một bữa tiệc điện ảnh hoàn hảo!', '/Images/features/food.webp', 1),
+
+(4, 'Không Gian Sang Trọng', 'Trước và sau buổi chiếu, hãy thư giãn tại khu lounge cao cấp của CGV với ghế ngồi êm ái, thiết kế hiện đại và không gian riêng tư – sẵn sàng mang đến trải nghiệm điện ảnh đẳng cấp.', '/Images/features/lounge.webp', 1),
+
+(6, 'Trải Nghiệm Điện Ảnh Đỉnh Cao', 'Đắm chìm trong hình ảnh sắc nét và âm thanh sống động với công nghệ IMAX hiện đại tại CGV. Màn hình siêu rộng cùng chất lượng trình chiếu đỉnh cao mang đến cảm giác như đang ở giữa những cảnh quay mãn nhãn.', '/Images/features/imax.webp', 2),
+
+(7, 'Âm Thanh Dolby Atmos Đỉnh Cao', 'Cảm nhận âm thanh như thật với công nghệ Dolby Atmos – nơi âm thanh chuyển động khắp không gian, đưa bạn vào trung tâm câu chuyện với từng chi tiết sống động, chân thật đến khó tin.', '/Images/features/sound.webp', 2),
+
+(8, 'Ẩm Thực Hấp Dẫn', 'Không chỉ xem phim, bạn còn được thưởng thức các món ăn hấp dẫn tại CGV: bắp rang bơ nóng hổi, nachos phô mai béo ngậy, xúc xích kiểu Âu và các loại nước giải khát phong phú. Một bữa tiệc điện ảnh hoàn hảo!', '/Images/features/food.webp', 2),
+
+(9, 'Không Gian Sang Trọng', 'Trước và sau buổi chiếu, hãy thư giãn tại khu lounge cao cấp của CGV với ghế ngồi êm ái, thiết kế hiện đại và không gian riêng tư – sẵn sàng mang đến trải nghiệm điện ảnh đẳng cấp.', '/Images/features/lounge.webp', 2);
 
 -- --------------------------------------------------------
 
@@ -485,12 +478,17 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`id`, `name`, `image_path`, `language`, `synopsis`, `rating`, `duration`, `top_cast`, `release_date`) VALUES
-(1, 'Spider-Man: Across the Spider-Verse', '/Images/movies/spiderman.webp', 'English', 'Miles Morales catapults across the Multiverse, where he encounters a team of Spider-People charged with protecting its very existence. When the heroes clash on how to handle a new threat, Miles must redefine what it means to be a hero.', 8.8, '2h 16m', 'Oscar Isaac', '2023-06-23'),
-(2, 'Extraction 2', '/Images/movies/extraction2.webp', 'English', 'After barely surviving his grievous wounds from his mission in Dhaka, Bangladesh, Tyler Rake is back, and his team is ready to take on their next mission.', 7.0, '2h 3m', 'Chris Hemsworth', '2023-06-13'),
-(3, 'Murder Mystery 2', '/Images/movies/murderMystery.webp', 'English', 'Full-time detectives Nick and Audrey are struggling to get their private eye agency off the ground. They find themselves at the center of international abduction when their friend Maharaja, is kidnapped at his own lavish wedding.', 5.7, '1h 30m', 'Jennifer Aniston', '2023-03-31'),
-(4, 'Mission: Impossible - Dead Reckoning Part One', '/Images/movies/missionImpossible.webp', 'English', 'Ethan Hunt and the IMF team must track down a terrifying new weapon that threatens all of humanity if it falls into the wrong hands. With control of the future and the fate of the world at stake, a deadly race around the globe begins. Confronted by a mysterious, all-powerful enemy, Ethan is forced to consider that nothing can matter more than the mission -- not even the lives of those he cares about most.', 8.0, '2h 43m', 'Tom Cruise', '2023-07-10'),
-(5, 'Oppenheimer', '/Images/movies/oppenheimer.webp', 'English', 'During World War II, Lt. Gen. Leslie Groves Jr. appoints physicist J. Robert Oppenheimer to work on the top-secret Manhattan Project. Oppenheimer and a team of scientists spend years developing and designing the atomic bomb. Their work comes to fruition on July 16, 1945, as they witness the world\'s first nuclear explosion, forever changing the course of history.', 9.4, '3h', 'Cillian Murphy', '2023-07-21'),
-(6, 'Barbie', '/Images/movies/barbie.webp', 'English', 'Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.', 7.6, '1h 54m', 'Margot Robbie', '2023-07-21');
+(1, 'Người Nhện: Du Hành Vũ Trụ Nhện', '/Images/movies/spiderman.webp', 'English', 'Miles Morales bước vào thế giới Đa Vũ Trụ và đối mặt với hàng loạt Người Nhện khác nhau. Khi xảy ra mâu thuẫn về cách xử lý hiểm họa mới, Miles phải học cách trở thành một người hùng theo cách riêng của mình.', 8.8, '2h 16m', 'Oscar Isaac', '2023-06-23'),
+
+(2, 'Cuộc Giải Cứu 2', '/Images/movies/extraction2.webp', 'English', 'Tyler Rake quay trở lại sau khi sống sót sau nhiệm vụ sinh tử tại Dhaka. Anh và đồng đội tiếp tục lao vào một nhiệm vụ giải cứu đầy kịch tính và nguy hiểm mới.', 7.0, '2h 3m', 'Chris Hemsworth', '2023-06-13'),
+
+(3, 'Vụ Án Bí Ẩn 2', '/Images/movies/murderMystery.webp', 'English', 'Hai thám tử nghiệp dư Nick và Audrey bất ngờ bị cuốn vào vụ bắt cóc quy mô quốc tế tại lễ cưới xa hoa của bạn họ - Maharaja. Liệu họ có thể phá án lần nữa?', 5.7, '1h 30m', 'Jennifer Aniston', '2023-03-31'),
+
+(4, 'Nhiệm Vụ Bất Khả Thi: Phần 1', '/Images/movies/missionImpossible.webp', 'English', 'Ethan Hunt và đội IMF phải ngăn chặn một vũ khí cực kỳ nguy hiểm trước khi nó rơi vào tay kẻ xấu. Cuộc đua nghẹt thở toàn cầu bắt đầu, đẩy Ethan đối mặt với thử thách lớn nhất trong sự nghiệp.', 8.0, '2h 43m', 'Tom Cruise', '2023-07-10'),
+
+(5, 'Oppenheimer', '/Images/movies/oppenheimer.webp', 'English', 'Lấy bối cảnh Thế chiến II, nhà khoa học J. Robert Oppenheimer dẫn đầu Dự án Manhattan chế tạo bom nguyên tử. Bộ phim tái hiện cuộc đời và quyết định thay đổi lịch sử nhân loại của ông.', 9.4, '3h', 'Cillian Murphy', '2023-07-21'),
+
+(6, 'Barbie: Thế Giới Thực', '/Images/movies/barbie.webp', 'English', 'Barbie và Ken rời khỏi vùng đất mộng mơ để khám phá thế giới thực. Những điều kỳ diệu và rắc rối xảy đến khi họ phải đối mặt với thực tế phức tạp của con người.', 7.6, '1h 54m', 'Margot Robbie', '2023-07-21');
 
 -- --------------------------------------------------------
 
@@ -842,8 +840,9 @@ CREATE TABLE `theatre` (
 --
 
 INSERT INTO `theatre` (`id`, `name`, `location`, `location_details`) VALUES
-(1, 'Bashundhara Shopping Mall', 'Panthapath', 'Show Motion Limited Level 8, Bashundhara City 13/3 Ka, Panthapath, Tejgaon, Dhaka-1205'),
-(2, 'Shimanto Shambhar', 'Dhanmondi', 'Shimanto Shamvar Road no 2, Dhanmondi, Dhaka-1205');
+(1, 'CGV Aeon Mall Tân Phú', 'Tân Phú', 'Tầng 3, Aeon Mall Tân Phú Celadon, Số 30 Bờ Bao Tân Thắng, P. Sơn Kỳ, Q. Tân Phú, TP. HCM'),
+(2, 'CGV Vincom Đồng Khởi', 'Quận 1', 'Tầng 3, Trung tâm thương mại Vincom Đồng Khởi, 72 Lê Thánh Tôn, Q.1, TP. HCM');
+
 
 -- --------------------------------------------------------
 
@@ -1102,6 +1101,3 @@ ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_5` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
