@@ -32,8 +32,6 @@ CREATE TABLE `hall` (
   `theatre_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-
 INSERT INTO `hall` (`id`, `name`, `total_seats`, `theatre_id`) VALUES
 (1, 'Phòng 1', 48, 1),
 (2, 'Phòng 2', 48, 1),
@@ -44,13 +42,10 @@ INSERT INTO `hall` (`id`, `name`, `total_seats`, `theatre_id`) VALUES
 (7, 'Phòng 3', 48, 2),
 (8, 'Phòng 4', 48, 2);
 
-
 CREATE TABLE `hallwise_seat` (
   `hall_id` int(11) NOT NULL,
   `seat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 INSERT INTO `hallwise_seat` (`hall_id`, `seat_id`) VALUES
 (1, 1),
@@ -454,17 +449,11 @@ CREATE TABLE `movie` (
 
 INSERT INTO `movie` (`id`, `name`, `image_path`, `language`, `synopsis`, `rating`, `duration`, `top_cast`, `release_date`) VALUES
 (1, 'Người Nhện: Du Hành Vũ Trụ Nhện', '/Images/movies/spiderman.webp', 'English', 'Miles Morales bước vào thế giới Đa Vũ Trụ và đối mặt với hàng loạt Người Nhện khác nhau. Khi xảy ra mâu thuẫn về cách xử lý hiểm họa mới, Miles phải học cách trở thành một người hùng theo cách riêng của mình.', 8.8, '2h 16m', 'Oscar Isaac', '2023-06-23'),
-
 (2, 'Cuộc Giải Cứu 2', '/Images/movies/extraction2.webp', 'English', 'Tyler Rake quay trở lại sau khi sống sót sau nhiệm vụ sinh tử tại Dhaka. Anh và đồng đội tiếp tục lao vào một nhiệm vụ giải cứu đầy kịch tính và nguy hiểm mới.', 7.0, '2h 3m', 'Chris Hemsworth', '2023-06-13'),
-
 (3, 'Vụ Án Bí Ẩn 2', '/Images/movies/murderMystery.webp', 'English', 'Hai thám tử nghiệp dư Nick và Audrey bất ngờ bị cuốn vào vụ bắt cóc quy mô quốc tế tại lễ cưới xa hoa của bạn họ - Maharaja. Liệu họ có thể phá án lần nữa?', 5.7, '1h 30m', 'Jennifer Aniston', '2023-03-31'),
-
 (4, 'Nhiệm Vụ Bất Khả Thi: Phần 1', '/Images/movies/missionImpossible.webp', 'English', 'Ethan Hunt và đội IMF phải ngăn chặn một vũ khí cực kỳ nguy hiểm trước khi nó rơi vào tay kẻ xấu. Cuộc đua nghẹt thở toàn cầu bắt đầu, đẩy Ethan đối mặt với thử thách lớn nhất trong sự nghiệp.', 8.0, '2h 43m', 'Tom Cruise', '2023-07-10'),
-
 (5, 'Oppenheimer', '/Images/movies/oppenheimer.webp', 'English', 'Lấy bối cảnh Thế chiến II, nhà khoa học J. Robert Oppenheimer dẫn đầu Dự án Manhattan chế tạo bom nguyên tử. Bộ phim tái hiện cuộc đời và quyết định thay đổi lịch sử nhân loại của ông.', 9.4, '3h', 'Cillian Murphy', '2023-07-21'),
-
 (6, 'Barbie: Thế Giới Thực', '/Images/movies/barbie.webp', 'English', 'Barbie và Ken rời khỏi vùng đất mộng mơ để khám phá thế giới thực. Những điều kỳ diệu và rắc rối xảy đến khi họ phải đối mặt với thực tế phức tạp của con người.', 7.6, '1h 54m', 'Margot Robbie', '2023-07-21');
-
 
 
 CREATE TABLE `movie_directors` (
@@ -487,8 +476,6 @@ CREATE TABLE `movie_genre` (
   `genre` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-
 INSERT INTO `movie_genre` (`movie_id`, `genre`) VALUES
 (1, 'Hành động'),
 (1, 'Phiêu lưu'),
@@ -507,7 +494,6 @@ INSERT INTO `movie_genre` (`movie_id`, `genre`) VALUES
 (6, 'Hài hước'),
 (6, 'Kỳ ảo');
 
-
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
   `payment_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -515,7 +501,6 @@ CREATE TABLE `payment` (
   `method` varchar(30) DEFAULT NULL,
   `customer_email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 INSERT INTO `payment` (`id`, `payment_time`, `amount`, `method`, `customer_email`) VALUES
 (1, '2023-08-16 19:41:37', 140000, 'Cash', 'Belal123@gmail.com'),
@@ -527,8 +512,6 @@ INSERT INTO `payment` (`id`, `payment_time`, `amount`, `method`, `customer_email
 (7, '2023-08-20 16:13:23', 70000, 'Cash', 'neloy.saha456@gmail.com'),
 (8, '2023-08-20 17:56:07', 90000, 'Cash', 'farhan@gmail.com');
 
-
-
 CREATE TABLE `person` (
   `email` varchar(100) NOT NULL,
   `first_name` varchar(20) DEFAULT NULL,
@@ -538,8 +521,6 @@ CREATE TABLE `person` (
   `account_balance` int(11) DEFAULT NULL,
   `person_type` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 INSERT INTO `person` (`email`, `first_name`, `last_name`, `password`, `phone_number`, `account_balance`, `person_type`) VALUES
 ('admin@gmail.com', 'Admin', 'Nam', 'Admin12345', '17579120791', 100000, 'Admin'),
@@ -553,7 +534,6 @@ INSERT INTO `person` (`email`, `first_name`, `last_name`, `password`, `phone_num
 ('niaz@nafi.com', 'Niaz', 'Rahman', '123', '01821379981', 100000, 'Customer'),
 ('rahim123@gmail.com', 'Rahim', 'Sheikh', '123', '01757912079', 100000, 'Customer'),
 ('sazin@gmail.com', 'Sazin', 'Haque', 'sazin1234', '01757912079', 100000, 'Customer');
-
 
 CREATE TABLE `seat` (
   `id` int(11) NOT NULL,
@@ -610,14 +590,11 @@ INSERT INTO `seat` (`id`, `name`) VALUES
 (47, 'F7'),
 (48, 'F8');
 
-
 CREATE TABLE `shown_in` (
   `movie_id` int(11) NOT NULL,
   `showtime_id` int(11) NOT NULL,
   `hall_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 INSERT INTO `shown_in` (`movie_id`, `showtime_id`, `hall_id`) VALUES
 (1, 1, 1),
@@ -717,8 +694,6 @@ INSERT INTO `shown_in` (`movie_id`, `showtime_id`, `hall_id`) VALUES
 (6, 12, 2),
 (6, 12, 6);
 
-
-
 CREATE TABLE `showtimes` (
   `id` int(11) NOT NULL,
   `movie_start_time` varchar(20) DEFAULT NULL,
@@ -726,8 +701,6 @@ CREATE TABLE `showtimes` (
   `showtime_date` date DEFAULT NULL,
   `price_per_seat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 INSERT INTO `showtimes` (`id`, `movie_start_time`, `show_type`, `showtime_date`, `price_per_seat`) VALUES
 (1, '11:00 am', '2D', '2025-04-22', 120000),
@@ -743,7 +716,6 @@ INSERT INTO `showtimes` (`id`, `movie_start_time`, `show_type`, `showtime_date`,
 (11, '2:30 pm', '3D', '2025-04-23', 150000),
 (12, '6:00 pm', '3D', '2025-04-22', 150000);
 
-
 CREATE TABLE `theatre` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
@@ -756,8 +728,6 @@ INSERT INTO `theatre` (`id`, `name`, `location`, `location_details`) VALUES
 (1, 'CGV Aeon Mall Tân Phú', 'Tân Phú', 'Tầng 3, Aeon Mall Tân Phú Celadon, Số 30 Bờ Bao Tân Thắng, P. Sơn Kỳ, Q. Tân Phú, TP. HCM'),
 (2, 'CGV Vincom Đồng Khởi', 'Quận 1', 'Tầng 3, Trung tâm thương mại Vincom Đồng Khởi, 72 Lê Thánh Tôn, Q.1, TP. HCM');
 
-
-
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
   `price` int(11) DEFAULT NULL,
@@ -768,8 +738,6 @@ CREATE TABLE `ticket` (
   `movie_id` int(11) NOT NULL,
   `showtimes_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 INSERT INTO `ticket` (`id`, `price`, `purchase_date`, `payment_id`, `seat_id`, `hall_id`, `movie_id`, `showtimes_id`) VALUES
 (1, 150000, '2023-08-17', 2, 3, 1, 5, 3),
@@ -916,4 +884,3 @@ ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_4` FOREIGN KEY (`hall_id`) REFERENCES `hall` (`id`),
   ADD CONSTRAINT `ticket_ibfk_5` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
 COMMIT;
-

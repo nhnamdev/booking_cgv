@@ -56,7 +56,7 @@ export const AdminMovieAddSection = () => {
       movieInfo.directors !== ""
     ) {
       try {
-        // Add the movie
+        // Thêm phim
         setLoading(true);
         const movieResponse = await axios.post(
           `${import.meta.env.VITE_API_URL}/adminMovieAdd`,
@@ -131,7 +131,7 @@ export const AdminMovieAddSection = () => {
   return (
     <section className="section-admin-movie-add container">
       <div className="form-heading-container">
-        <h2 className="form-admin-heading">Add a Movie</h2>
+        <h2 className="form-admin-heading">Thêm Phim</h2>
         <button className="btn-admin-arrow" onClick={toggleAdminSection}>
           {!adminMovieDropDown ? (
             <svg
@@ -170,101 +170,101 @@ export const AdminMovieAddSection = () => {
       {adminMovieDropDown && (
         <form className="form-movie-add" onSubmit={movieAdd}>
           <div>
-            <p>Movie Name:</p>
+            <p>Tên phim:</p>
             <input
               name="movieName"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Movie Name"
+              placeholder="Nhập tên phim"
             />
           </div>
 
           <div>
-            <p>Movie Photo Path:</p>
+            <p>Đường dẫn ảnh phim:</p>
             <input
               name="imagePath"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Image path"
+              placeholder="Nhập đường dẫn ảnh"
             />
           </div>
 
           <div>
-            <p>Language:</p>
+            <p>Ngôn ngữ:</p>
             <input
               name="language"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Movie Language"
+              placeholder="Nhập ngôn ngữ"
             />
           </div>
 
           <div>
-            <p>Synopsis:</p>
+            <p>Mô tả:</p>
             <input
               name="description"
               onChange={(e) => handleMovieInfo(e)}
-              placeholder="Enter Movie's Brief Description"
+              placeholder="Nhập mô tả ngắn"
             />
           </div>
 
           <div>
-            <p>Rating:</p>
+            <p>Điểm xếp hạng (10):</p>
             <input
               name="rating"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Movie Rating"
+              placeholder="Nhập điểm xếp hạng"
             />
           </div>
 
           <div>
-            <p>Duration:</p>
+            <p>Thời gian chiếu:</p>
             <input
               name="duration"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Movie Duration"
+              placeholder="Nhập thời gian chiếu"
             />
           </div>
 
           <div>
-            <p>Top Cast:</p>
+            <p>Diễn Viên Chính:</p>
             <input
               name="cast"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter Movie's Main Actor/Actress Name"
+              placeholder="Nhập tên diễn viên chính"
             />
           </div>
 
           <div>
-            <p>Release Date:</p>
+            <p>Ngày phát hành:</p>
             <input
               name="relDate"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="(yyyy-mm-dd) format"
+              placeholder="(yyyy-mm-dd)"
             />
           </div>
 
           <div>
-            <p>Movie Genres:</p>
+            <p>Thể loại phim:</p>
             <input
               name="genres"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter separate Genres with comma"
+              placeholder="Nhập các thể loại"
             />
           </div>
 
           <div>
-            <p>Movie Directors:</p>
+            <p>Đạo diễn:</p>
             <input
               name="directors"
               onChange={(e) => handleMovieInfo(e)}
               type="text"
-              placeholder="Enter separate Directors with comma"
+              placeholder="Nhập các tên đạo diễn"
             />
           </div>
 

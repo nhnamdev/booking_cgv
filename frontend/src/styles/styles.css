@@ -1,50 +1,33 @@
 /* 
-
--------Các quy tắc cần thiết-----
-
 font-size: 10px
 Now, 1 rem = 10px 
 10px/16px = 0.625 = 62.5% 
-
 -Font sizes (px)
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
-
-
 -Font weights
 Default:400
 500
 600
 700
-
 -Line heights
 Default: 1
 Small:1.05
 Medium:1.2
 Paragraph default:1.6
-
 letter-spacing
 -0.5px
 0.75px
-
-
 ----COLORS
-
 Primary:#1a1d2c
-
 - Tints:#e8e8ea,#e6e6e8,#d1d2d5,#babbc0,#767780,#313441,#484a56,#cccdd0
 - Shades:#313441
 - Accents:#EB3656,#ef5e78,#d4314d,#fbd7dd,#f59eae
 - Greys:#555, #333,#6f6f6f,#888,#767676
-
-
 ----SHADOWS
 box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
-
-
 ----BORDER-RADIUS
 9px,11px
 */
-
 * {
   margin: 0;
   padding: 0;
@@ -487,7 +470,7 @@ header {
 /* ************ */
 
 .section-hero {
-  padding: 4.8rem 0 9.6rem 0;
+  padding: 3.8rem 0 9.6rem 0;
 }
 
 .hero {
