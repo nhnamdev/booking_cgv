@@ -51,7 +51,7 @@ export const AdminDashboardPrimary = () => {
 
   return (
     <section className="section-admin-summary container">
-      <h2 className="form-admin-heading dash-heading">Summary</h2>
+      <h2 className="form-admin-heading dash-heading">Tóm tắt</h2>
       <div className="admin-dashboard-primary">
         <div className="dashboard-pri-card">
           {loading1 ? (
@@ -120,7 +120,7 @@ export const AdminDashboardPrimary = () => {
             </p>
           )}
           <div className="admin-dashboard-category">
-            <p>Tổng số tiền thanh toán</p>
+            <p>Tổng doanh thu</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="admin-icon"

@@ -125,8 +125,8 @@ export const Footer = () => {
       <h3 className="footer-heading">Our Theatres</h3>
 
       <p className="copyright">
-        Copyright &copy;  © 2023 bởi CGV Việt Nam. Mọi quyền được bảo lưu.
-        Ứng dụng này được phát triển nhằm nâng cao trải nghiệm đặt vé xem phim cho khách hàng CGV. Mọi nội dung và mã nguồn (nếu có chia sẻ) tuân theo giấy phép GNU General Public License, phiên bản 3 hoặc mới hơn (GPL-3.0-or-later).
+        Copyright &copy;  2025 bởi CGV Việt Nam. 
+        Ứng dụng này được phát triển nhằm nâng cao trải nghiệm đặt vé xem phim cho khách hàng CGV. Mọi nội dung và mã nguồn được thiết kế và phát hành bởi Nguyễn Hoàng Nam. Mọi sai sót xin liên hệ nhnam23304@gmail.com.
       </p>
 
       <div className="footer-address-container">
