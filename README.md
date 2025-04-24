@@ -22,6 +22,7 @@ Chào mừng bạn đến với **CGV Việt Nam**, nền tảng đặt vé xem 
 | **Server (Backend/API)** | Node.js, Express |
 | **Cơ sở dữ liệu** | MySQL |
 
+
 ## Cách sử dụng!
 👉 Cài đặt thư viện: npm install
 
