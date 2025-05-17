@@ -832,5 +832,5 @@ app.post('/api/register', (req, res) => {
 
 // For local usage
 app.listen(port, () => {
-  console.log(`AshoDekhi backend running on ${port}`);
+  console.log(` backend running on ${port}`);
 });
