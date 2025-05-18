@@ -19,7 +19,7 @@ export const toastFontStyle = {
 // Toasts handlers
 // /////////////////
 export const loginSuccessToast = () => {
-  toast.success("Signed in successfully", {
+  toast.success("Đăng nhập thành công", {
     ...toastPrimaryCategories,
     theme: "colored",
     style: toastFontStyle,
@@ -51,7 +51,7 @@ export const signupFailedToast = (msg) => {
 };
 
 export const ticketPurchaseError = () => {
-  toast.error("Sorry, couldn't complete your purchase", {
+  toast.error("Xin lỗi, không thể hoàn tất việc mua vé", {
     ...toastPrimaryCategories,
     theme: "colored",
     style: toastFontStyle,
@@ -59,7 +59,7 @@ export const ticketPurchaseError = () => {
 };
 
 export const purchaseCompletion = (tickets) => {
-  toast.success("🎉Congratulations on your purchase!", {
+  toast.success("🎉Chúc mừng việc mua vé thành công!", {
     ...toastPrimaryCategories,
     theme: "colored",
     style: toastFontStyle,
@@ -77,7 +77,7 @@ export const purchaseCompletion = (tickets) => {
 };
 
 export const adminMovieToast = () => {
-  toast.success("Movie Added Successfully", {
+  toast.success("Thêm phim thành công", {
     ...toastPrimaryCategories,
     theme: "light",
     style: toastFontStyle,
@@ -85,7 +85,7 @@ export const adminMovieToast = () => {
 };
 
 export const adminShowtimeToast = () => {
-  toast.success("Showtime Added Successfully", {
+  toast.success("Thêm suất chiếu thành công", {
     ...toastPrimaryCategories,
     theme: "light",
     style: toastFontStyle,
@@ -93,14 +93,14 @@ export const adminShowtimeToast = () => {
 };
 
 export const adminShowninToast = () => {
-  toast.success("Showtime Slot updated Successfully", {
+  toast.success("Cập nhật suất chiếu thành công", {
     ...toastPrimaryCategories,
     theme: "light",
     style: toastFontStyle,
   });
 };
 
-export const adminErrorToast = (msg = "Couldn't update. Please try again!") => {
+export const adminErrorToast = (msg = "Không thể cập nhật. Vui lòng thử lại!") => {
   toast.error(msg, {
     ...toastPrimaryCategories,
     theme: "colored",

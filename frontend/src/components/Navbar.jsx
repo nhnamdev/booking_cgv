@@ -254,6 +254,7 @@ export const Navbar = () => {
                 <li>
                   <button
                     className="signup-button"
+                
                     onClick={() => {
                       toggleNavSignOptionsVis();
                       dispatch(showSignModal());
@@ -265,7 +266,9 @@ export const Navbar = () => {
                 <li>
                   <button
                     className="login-button"
+                    // 1.1.2	Cài đặt sự kiện click cho button Sign In Button trên NavBar
                     onClick={() => {
+                    // 1.1.3	Người dùng click vào nút SignIn nằm bên góc phải màn hình
                       toggleNavSignOptionsVis();
                       dispatch(showLoginModal());
                     }}

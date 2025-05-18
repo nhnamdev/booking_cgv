@@ -1,14 +1,19 @@
+// Dưới đây là cách khởi tạo kết nối DB
+// Import các module cần thiết
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+// Import module dotenv để sử dụng biến môi trường
 require("dotenv").config();
-
+// Kiểm tra xem các biến môi trường đã được định nghĩa chưa
 console.log("ENV loaded:");
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_NAME =", process.env.DB_NAME);
+// Khởi tạo cổng mặc định 7000
 const port = process.env.PORT || 7000;
+// Tạo một ứng dụng Express
 const app = express();
-
+// Sử dụng middleware CORS để cho phép truy cập từ các nguồn khác nhau
 app.use(
   cors({
     //Chỉ định các địa chỉ frontend được phép gọi API từ backend
@@ -17,11 +22,11 @@ app.use(
     credentials: true
   })
 );
-
+// Parse JSON bodies in the request
 app.use(express.json());
-
+// Khởi tạo biến db để kết nối đến cơ sở dữ liệu
 let db;
-
+// Định nghĩa cấu hình kết nối đến cơ sở dữ liệu
 const configuration = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -32,17 +37,21 @@ const configuration = {
 //  setting connection
 function handleDisconnect() {
   db = mysql.createConnection(configuration);
-
+// Hàm Kết nối đến cơ sở dữ liệu
   db.connect(function (err) {
     if (err) {
+      // Hệ thống hiển thị thông báo: "Lỗi hệ thống. Vui lòng thử lại sau".
       console.log("error when connecting to db:", err);
+      // Nếu có lỗi, thực hiện kết nối lại sau 2 giây
       setTimeout(handleDisconnect, 2000);
     } else {
+      // Nếu kết nối thành công, hiển thị thông báo
       console.log("connection is successful");
     }
   });
   db.on("error", function (err) {
     console.log("db error", err);
+    // Nếu lỗi do kết nối bị đứt, thực hiện kết nối lại
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
       handleDisconnect();
     } else {
@@ -50,6 +59,7 @@ function handleDisconnect() {
     }
   });
 }
+// Gọi hàm kết nối đến cơ sở dữ liệu
 handleDisconnect();
 
 app.get("/", (req, res) => {
@@ -305,28 +315,30 @@ app.post("/registration", (req, res) => {
 
       return res
         .status(200)
-        .json({ message: "Congratulations! We created your account" });
+        .json({ message: "Chúc mừng! Tạo tài khoản thành công" });
     }
   );
 });
 
-// /////
-// LOGIN
-// /////
 
+
+// Xử lý yêu cầu POST đến đường dẫn /login
 app.post("/login", (req, res) => {
+  // Lấy email và password từ body của request
   const email = req.body.email;
   const password = req.body.password;
-
+  // 1.1.9	Thư viện ExpressJs thực hiện câu lệnh SELECT kiểm tra người dùng có tồn  trong bảng person hay không?
   const sql = `SELECT email, first_name, person_type, password FROM person WHERE email=? AND password=?`;
 
   db.query(sql, [email, password], (err, data) => {
     if (err) return res.json(err);
-
+    // 1.2.6    Nếu người dùng không tồn tại Database trả về dữ liệu rỗng.
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, User not found!" });
+      //1.2.7    API nhận dữ liệu rỗng từ database trả về lỗi không tìm thấy user dưới dạng json.
+      return res.status(404).json({ message: "Xin lỗi, tài khoản không tồn tại!" });
     }
-
+   // 1.2.0	Nếu người dùng tồn tại Database trả về dữ liệu user.
+   //1.2.1	API nhận được data tiếp tục trả về dữ liệu user dưới dạng json cho frontend.
     return res.json(data);
   });
 });
@@ -509,7 +521,7 @@ app.post("/adminMovieAdd", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(
@@ -554,7 +566,7 @@ app.post("/genreInsert", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [movieId, genre], (err, data) => {
@@ -581,7 +593,7 @@ app.post("/directorInsert", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [movieId, director], (err, data) => {
@@ -620,7 +632,7 @@ app.post("/showdateAdd", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql1, [showDate, showDate, showDate], (err1, data1) => {
@@ -662,7 +674,7 @@ app.post("/shownInUpdate", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, showIdArr, (err, data) => {
@@ -706,7 +718,7 @@ app.post("/adminShowtimes", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showdate], (err, data) => {
@@ -730,7 +742,7 @@ app.post("/movieReplaceFrom", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showtimeId], (err, data) => {
@@ -754,7 +766,7 @@ app.post("/movieReplaceTo", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showtimeId], (err, data) => {
@@ -780,7 +792,7 @@ app.post("/movieSwap", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [updatedMovieId, showtime_id, prevMovieId], (err, data) => {
@@ -796,7 +808,7 @@ app.post('/api/register', (req, res) => {
 
     // Validate input
     if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Username, email and password are required' });
+        return res.status(400).json({ error: 'Username, email và password là bắt buộc' });
     }
 
     // Check if user already exists
@@ -808,7 +820,7 @@ app.post('/api/register', (req, res) => {
         }
 
         if (results.length > 0) {
-            return res.status(400).json({ error: 'Username or email already exists' });
+            return res.status(400).json({ error: 'Username hoặc email đã tồn tại' });
         }
 
         // Hash password (you should use bcrypt in production)
@@ -819,11 +831,11 @@ app.post('/api/register', (req, res) => {
         db.query(insertUserQuery, [username, email, hashedPassword, full_name, phone_number], (err, result) => {
             if (err) {
                 console.error('Database error:', err);
-                return res.status(500).json({ error: 'Failed to create user' });
+                return res.status(500).json({ error: 'Tạo tài khoản thất bại' });
             }
 
             res.status(201).json({
-                message: 'User registered successfully',
+                message: 'Đăng kí tài khoản thành công',
                 userId: result.insertId
             });
         });
