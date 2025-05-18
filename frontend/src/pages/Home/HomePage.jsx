@@ -9,6 +9,8 @@ import { TopEdge } from "../../components/TopEdge";
 const HomePage = () => {
   return (
     <>
+      {/* 1.1.0	Hệ thống đang ở màn hình chính (Trang chủ). */}
+      {/* 1.1.1	Hệ thống khởi tạo các thành phần cần thiết cho giao diện trang chủ như navbar,… */}
       <TopEdge />
       <Navbar />
       <HeroSection />

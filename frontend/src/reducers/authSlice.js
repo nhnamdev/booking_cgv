@@ -14,7 +14,7 @@ const authSlice = createSlice({
     login(state, action) {
       state.isAuthenticated = true;
       state.signedPerson = action.payload;
-
+      // 1.2.3	Frontend tiếp tục lưu dữ liệu user vào localStorage
       localStorage.setItem("signedInPerson", JSON.stringify(action.payload));
       localStorage.setItem("authStatus", true);
     },
