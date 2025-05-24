@@ -5,14 +5,18 @@ const mysql = require("mysql");
 const cors = require("cors");
 // Import module dotenv để sử dụng biến môi trường
 require("dotenv").config();
+
 // Kiểm tra xem các biến môi trường đã được định nghĩa chưa
 console.log("ENV loaded:");
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_NAME =", process.env.DB_NAME);
+
 // Khởi tạo cổng mặc định 7000
 const port = process.env.PORT || 7000;
+
 // Tạo một ứng dụng Express
 const app = express();
+
 // Sử dụng middleware CORS để cho phép truy cập từ các nguồn khác nhau
 app.use(
   cors({
@@ -22,6 +26,7 @@ app.use(
     credentials: true
   })
 );
+
 // Parse JSON bodies in the request
 app.use(express.json());
 // Khởi tạo biến db để kết nối đến cơ sở dữ liệu
@@ -66,9 +71,11 @@ app.get("/", (req, res) => {
   return res.json("Hello Backend Side");
 });
 
+
 // /////
 // HOME
 // /////
+
 
 app.get("/latestMovies", (req, res) => {
   const sql =
@@ -101,9 +108,11 @@ app.get("/locationFeatures", (req, res) => {
   });
 });
 
+
 // /////////
 // SHOWTIMES
 // /////////
+
 
 app.get("/theatres", (req, res) => {
   sql = "SELECT id, name,location FROM theatre";
@@ -153,9 +162,11 @@ app.get("/genres", (req, res) => {
   });
 });
 
+
 // /////////////
 // PAYMENT PAGE
 // /////////////
+
 
 app.post("/showtimesDates", (req, res) => {
   const theatreId = req.body.theatreId;
@@ -292,9 +303,11 @@ app.post("/recentPurchase", (req, res) => {
   });
 });
 
+
 // ////////
 // SIGN UP
 // ////////
+
 
 app.post("/registration", (req, res) => {
   const email = req.body.email;
@@ -343,9 +356,11 @@ app.post("/login", (req, res) => {
   });
 });
 
+
 // /////////////////
 // MOVIEDETAILS PAGE
 // /////////////////
+
 
 app.post("/movieDetail", (req, res) => {
   const id = req.body.movieDetailsId;
@@ -399,9 +414,11 @@ app.post("/otherMovies", (req, res) => {
   });
 });
 
+
 // ///////////////////
 // CUSTOMER INFO PAGE
 // ///////////////////
+
 
 app.post("/customerProfile", (req, res) => {
   const email = req.body.email;
@@ -415,6 +432,7 @@ app.post("/customerProfile", (req, res) => {
     return res.json(data);
   });
 });
+
 
 app.post("/customerPurchases", (req, res) => {
   const email = req.body.email;
@@ -453,9 +471,64 @@ app.post("/customerPurchases", (req, res) => {
   });
 });
 
+
 // /////
 // ADMIN
 // /////
+
+// 12.1.13 Backend thêm phim vào data
+
+app.post("/adminMovieAdd", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const name = req.body.name;
+  const image_path = req.body.image_path;
+  const language = req.body.language;
+  const synopsis = req.body.synopsis;
+  const rating = req.body.rating;
+  const duration = req.body.duration;
+  const top_cast = req.body.top_cast;
+  const release_date = req.body.release_date;
+
+  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
+  values
+  (?,?,?,?,?,?,?,?)`;
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(
+        sql1,
+        [
+          name,
+          image_path,
+          language,
+          synopsis,
+          rating,
+          duration,
+          top_cast,
+          release_date,
+        ],
+        (err1, data1) => {
+          if (err1) return res.json(err1);
+
+          db.query(sql2, (err2, data2) => {
+            if (err2) return res.json(err2);
+
+            return res.json(data2);
+          });
+        }
+    );
+  });
+});
 
 app.get("/totalTickets", (req, res) => {
   const sql = `SELECT COUNT(*) AS total_tickets FROM ticket`;

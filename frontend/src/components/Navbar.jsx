@@ -5,6 +5,7 @@ import { HashLink } from "react-router-hash-link";
 import { logout, showLoginModal, showSignModal } from "../reducers/authSlice";
 import { toggleMenuState } from "../reducers/mobileNavSlice";
 
+// 12.1.1 Hệ thống khởi tạo thành phần giao diện cho menu ở phần header (Navbar)
 export const Navbar = () => {
   const [navSignOptionsVis, setNavSignOptionsVis] = useState(false);
   let pageName;
@@ -35,7 +36,11 @@ export const Navbar = () => {
     pageName = "showtimes";
   } else if (location.pathname === "/aboutus") {
     pageName = "aboutUs";
-  }  else {
+  }
+  // 12.1.6 Hệ thống  điều hướng  đến trang Quản lý phim (AdminPage).
+  else if (location.pathname === "/admin") {
+    pageName = "admin";
+  } else {
     pageName = "";
   }
 
@@ -140,6 +145,20 @@ export const Navbar = () => {
             </Link>
           </li>
 
+          {/*12.1.2 Hệ thống kiểm tra quyền admin. */}
+          {isAuthenticated && signedPerson.person_type === "Admin" && (
+              // 12.1.3 Hệ thống render Header chứa liên kết điều hường “Admin” dành cho người có quyền  quản lý phim.
+            <li>
+              <Link
+                className="nav-item"
+                  // 12.1.4 Hệ thống cài đặt sự kiện click cho liên kết “Admin” trong header thông qua React Router.
+                to="/admin"
+                style={pageName === "admin" ? selectionTab : {}}
+              >
+                Admin
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
 

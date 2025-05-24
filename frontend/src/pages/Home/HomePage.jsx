@@ -12,6 +12,7 @@ const HomePage = () => {
       {/* 1.1.0	Hệ thống đang ở màn hình chính (Trang chủ). */}
       {/* 1.1.1	Hệ thống khởi tạo các thành phần cần thiết cho giao diện trang chủ như navbar,… */}
       <TopEdge />
+        {/* 12.1.1Hệ thống khởi tạo thành phần giao diện cho menu ở phần header (Navbar) */}
       <Navbar />
       <HeroSection />
       <HomeCollection />
