@@ -7,6 +7,7 @@ import { AdminShownInModifySection } from "./components/AdminShownInModifySectio
 import { AdminDashboardPrimary } from "./components/AdminDashboardPrimary";
 import { MovieWiseTicket } from "./components/MovieWiseTicket";
 
+// 12.1.6 Hệ thống điều hướng  đến trang Quản lý phim (AdminPage).
 const AdminPage = () => {
     const [selectedShowDate, setSelectedShowDate] = useState("");
 
@@ -19,6 +20,7 @@ const AdminPage = () => {
             <Navbar />
             <AdminDashboardPrimary />
             <MovieWiseTicket />
+            {/* 12.1.7Hệ thống khởi tạo state và ánh xạ các giá trị form thêm phim (trong AdminMovieAddSection). */}
             <AdminMovieAddSection />
             <AdminShowtimesAddSection
                 selectedShowDate={selectedShowDate}

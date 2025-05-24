@@ -5,14 +5,18 @@ const mysql = require("mysql");
 const cors = require("cors");
 // Import module dotenv để sử dụng biến môi trường
 require("dotenv").config();
+
 // Kiểm tra xem các biến môi trường đã được định nghĩa chưa
 console.log("ENV loaded:");
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_NAME =", process.env.DB_NAME);
+
 // Khởi tạo cổng mặc định 7000
 const port = process.env.PORT || 7000;
+
 // Tạo một ứng dụng Express
 const app = express();
+
 // Sử dụng middleware CORS để cho phép truy cập từ các nguồn khác nhau
 app.use(
   cors({
@@ -22,6 +26,7 @@ app.use(
     credentials: true
   })
 );
+
 // Parse JSON bodies in the request
 app.use(express.json());
 // Khởi tạo biến db để kết nối đến cơ sở dữ liệu
@@ -66,9 +71,11 @@ app.get("/", (req, res) => {
   return res.json("Hello Backend Side");
 });
 
+
 // /////
 // HOME
 // /////
+
 
 app.get("/latestMovies", (req, res) => {
   const sql =
@@ -101,9 +108,11 @@ app.get("/locationFeatures", (req, res) => {
   });
 });
 
+
 // /////////
 // SHOWTIMES
 // /////////
+
 
 app.get("/theatres", (req, res) => {
   sql = "SELECT id, name,location FROM theatre";
@@ -153,9 +162,11 @@ app.get("/genres", (req, res) => {
   });
 });
 
+
 // /////////////
 // PAYMENT PAGE
 // /////////////
+
 
 app.post("/showtimesDates", (req, res) => {
   const theatreId = req.body.theatreId;
@@ -292,9 +303,11 @@ app.post("/recentPurchase", (req, res) => {
   });
 });
 
+
 // ////////
 // SIGN UP
 // ////////
+
 
 app.post("/registration", (req, res) => {
   const email = req.body.email;
@@ -343,9 +356,11 @@ app.post("/login", (req, res) => {
   });
 });
 
+
 // /////////////////
 // MOVIEDETAILS PAGE
 // /////////////////
+
 
 app.post("/movieDetail", (req, res) => {
   const id = req.body.movieDetailsId;
@@ -399,9 +414,11 @@ app.post("/otherMovies", (req, res) => {
   });
 });
 
+
 // ///////////////////
 // CUSTOMER INFO PAGE
 // ///////////////////
+
 
 app.post("/customerProfile", (req, res) => {
   const email = req.body.email;
@@ -415,6 +432,7 @@ app.post("/customerProfile", (req, res) => {
     return res.json(data);
   });
 });
+
 
 app.post("/customerPurchases", (req, res) => {
   const email = req.body.email;
@@ -453,10 +471,12 @@ app.post("/customerPurchases", (req, res) => {
   });
 });
 
+
 // /////
 // ADMIN
 // /////
 
+// 12.1.13 Backend thêm phim vào data
 
 app.post("/adminMovieAdd", (req, res) => {
   //admin revalidation
