@@ -496,58 +496,58 @@ app.get("/totalTicketPerMovie", (req, res) => {
     return res.json(data);
   });
 });
-
-app.post("/adminMovieAdd", (req, res) => {
-  //admin revalidation
-  const email = req.body.email;
-  const password = req.body.password;
-  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-
-  const name = req.body.name;
-  const image_path = req.body.image_path;
-  const language = req.body.language;
-  const synopsis = req.body.synopsis;
-  const rating = req.body.rating;
-  const duration = req.body.duration;
-  const top_cast = req.body.top_cast;
-  const release_date = req.body.release_date;
-
-  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
-  values
-  (?,?,?,?,?,?,?,?)`;
-  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
-
-  db.query(sql0, [email, password, "Admin"], (err, data) => {
-    if (err) return res.json(err);
-
-    if (data.length === 0) {
-      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
-    }
-
-    db.query(
-      sql1,
-      [
-        name,
-        image_path,
-        language,
-        synopsis,
-        rating,
-        duration,
-        top_cast,
-        release_date,
-      ],
-      (err1, data1) => {
-        if (err1) return res.json(err1);
-
-        db.query(sql2, (err2, data2) => {
-          if (err2) return res.json(err2);
-
-          return res.json(data2);
-        });
-      }
-    );
-  });
-});
+//
+// app.post("/adminMovieAdd", (req, res) => {
+//   //admin revalidation
+//   const email = req.body.email;
+//   const password = req.body.password;
+//   const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+//
+//   const name = req.body.name;
+//   const image_path = req.body.image_path;
+//   const language = req.body.language;
+//   const synopsis = req.body.synopsis;
+//   const rating = req.body.rating;
+//   const duration = req.body.duration;
+//   const top_cast = req.body.top_cast;
+//   const release_date = req.body.release_date;
+//
+//   const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
+//   values
+//   (?,?,?,?,?,?,?,?)`;
+//   const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+//
+//   db.query(sql0, [email, password, "Admin"], (err, data) => {
+//     if (err) return res.json(err);
+//
+//     if (data.length === 0) {
+//       return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+//     }
+//
+//     db.query(
+//       sql1,
+//       [
+//         name,
+//         image_path,
+//         language,
+//         synopsis,
+//         rating,
+//         duration,
+//         top_cast,
+//         release_date,
+//       ],
+//       (err1, data1) => {
+//         if (err1) return res.json(err1);
+//
+//         db.query(sql2, (err2, data2) => {
+//           if (err2) return res.json(err2);
+//
+//           return res.json(data2);
+//         });
+//       }
+//     );
+//   });
+// });
 
 app.post("/genreInsert", (req, res) => {
   //admin revalidation
