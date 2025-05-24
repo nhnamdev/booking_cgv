@@ -35,9 +35,7 @@ export const Navbar = () => {
     pageName = "showtimes";
   } else if (location.pathname === "/aboutus") {
     pageName = "aboutUs";
-  } else if (location.pathname === "/admin") {
-    pageName = "admin";
-  } else {
+  }  else {
     pageName = "";
   }
 
@@ -141,17 +139,7 @@ export const Navbar = () => {
               Liên hệ
             </Link>
           </li>
-          {isAuthenticated && signedPerson.person_type === "Admin" && (
-            <li>
-              <Link
-                className="nav-item"
-                to="/admin"
-                style={pageName === "admin" ? selectionTab : {}}
-              >
-                Admin
-              </Link>
-            </li>
-          )}
+
         </ul>
       </nav>
 
