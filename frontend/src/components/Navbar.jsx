@@ -35,7 +35,9 @@ export const Navbar = () => {
     pageName = "showtimes";
   } else if (location.pathname === "/aboutus") {
     pageName = "aboutUs";
-  }  else {
+  } else if (location.pathname === "/admin") {
+    pageName = "admin";
+  } else {
     pageName = "";
   }
 
@@ -140,6 +142,17 @@ export const Navbar = () => {
             </Link>
           </li>
 
+          {isAuthenticated && signedPerson.person_type === "Admin" && (
+            <li>
+              <Link
+                className="nav-item"
+                to="/admin"
+                style={pageName === "admin" ? selectionTab : {}}
+              >
+                Admin
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
 
