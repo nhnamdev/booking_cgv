@@ -7,28 +7,31 @@ import { AdminShownInModifySection } from "./components/AdminShownInModifySectio
 import { AdminDashboardPrimary } from "./components/AdminDashboardPrimary";
 import { MovieWiseTicket } from "./components/MovieWiseTicket";
 
+
 const AdminPage = () => {
-  const [selectedShowDate, setSelectedShowDate] = useState("");
+    // State quản lý ngày chiê ược chọn
+    const [selectedShowDate, setSelectedShowDate] = useState("");
 
-  const handleSelectedDate = (e) => {
-    setSelectedShowDate(e.target.value);
-  };
+    const handleSelectedDate = (e) => {
+        setSelectedShowDate(e.target.value);
+    };
 
-  return (
-    <>
-      <Navbar />
-      <AdminDashboardPrimary />
-      <MovieWiseTicket />
-      <AdminMovieAddSection />
-      <AdminShowtimesAddSection
-        selectedShowDate={selectedShowDate}
-        setSelectedShowDate={setSelectedShowDate}
-        handleSelectedDate={handleSelectedDate}
-      />
-      <AdminShownInModifySection selectedDate={selectedShowDate} />
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            <Navbar />
+            <AdminDashboardPrimary />
+            <MovieWiseTicket />
+            {/* 12.1.7 Khởi tạo component AdminMovieAddSection/ (trong AdminPage) */}
+            <AdminMovieAddSection />
+            <AdminShowtimesAddSection
+                selectedShowDate={selectedShowDate}
+                setSelectedShowDate={setSelectedShowDate}
+                handleSelectedDate={handleSelectedDate}
+            />
+            <AdminShownInModifySection selectedDate={selectedShowDate} />
+            <Footer />
+        </>
+    );
 };
 
 export default AdminPage;
