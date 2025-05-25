@@ -7,7 +7,7 @@ import { adminErrorToast, adminMovieToast } from "../../../toasts/toast";
 export const AdminMovieAddSection = () => {
     const { signedPerson } = useSelector((store) => store.authentication);
 
-
+    // 12.1.8Hệ thống khởi tạo state cho form thêm phim (AdminMovieAddSection)
     const [movieInfo, setMovieInfo] = useState({
         movieName: "",
         imagePath: "",
@@ -24,12 +24,12 @@ export const AdminMovieAddSection = () => {
     const [adminMovieDropDown, setAdminMovieDropDown] = useState(false);
 
     const [loading, setLoading] = useState(false);
-    // 12.1.8 Admin nhấn mũi tên để mở form “Thêm phim”.
+    // 12.1.9 Admin nhấn mũi tên để mở form “Thêm phim”
     const toggleAdminSection = () => {
         setAdminMovieDropDown((prevState) => !prevState);
     };
 
-//  12.1.9 Hệ thống hiển thị form và cho phép admin nhập thông tin phim mới vào bao gồm: tên phim, hình ảnh, poster, ngôn ngữ, mô tả, thời lượng, diễn viên, đạo diễn, ngày phát sóng, thể loại, đạo diễn,…
+
     const handleMovieInfo = (e) => {
         const name = e.target.name;
         const value =
@@ -49,7 +49,7 @@ export const AdminMovieAddSection = () => {
 
     const movieAdd = async (e) => {
         e.preventDefault();
-// 12.1.10 Hệ thống kiểm tra tính hợp lệ của các trường.
+// 12.1.11 Hệ thống kiểm tra tính hợp lệ của các trường
         if (
             movieInfo.movieName !== "" &&
             movieInfo.imagePath !== "" &&
@@ -64,7 +64,7 @@ export const AdminMovieAddSection = () => {
         ) {
             try {
                 // Thêm phim
- // 12.1.12 Hệ thống gửi yêu cầu POST đến enspoint (/adminMovieAdd) chứa thông tin phim vừa nhập.
+ // 12.1.13 Hệ thống gửi yêu cầu POST đến enspoint (/adminMovieAdd) chứa thông tin phim vừa nhập.
                 setLoading(true);
                 const movieResponse = await axios.post(
                     `${import.meta.env.VITE_API_URL}/adminMovieAdd`,
@@ -108,7 +108,7 @@ export const AdminMovieAddSection = () => {
                             director,
                         });
 
-                        // Check if it's the last director
+// 12.1.15 Hiển thị thông báo thành công
                         if (idx === movieInfo.directors.length - 1) {
                             adminMovieToast();
                         }
@@ -176,7 +176,7 @@ export const AdminMovieAddSection = () => {
                 </button>
             </div>
 
- {/* 12.1.9 Hệ thống hiển thị form và cho phép admin nhập thông tin phim mới vào bao gồm: tên phim, hình ảnh, poster, ngôn ngữ, mô tả, thời lượng, diễn viên, đạo diễn, ngày phát sóng, thể loại, đạo diễn,…  */}
+ {/* 12.1.10 Hệ thống hiển thị form và cho phép admin nhập thông tin phim mới vào bao gồm: tên phim, hình ảnh, poster, ngôn ngữ, mô tả, thời lượng, diễn viên, đạo diễn, ngày phát sóng, thể loại, đạo diễn,…  */}
             {adminMovieDropDown && (
                 <form className="form-movie-add" onSubmit={movieAdd}>
                     <div>
@@ -287,7 +287,7 @@ export const AdminMovieAddSection = () => {
                         />
                     </div>
 
- {/* 12.1.11 Sau đó admin nhấn nút “Confirm” */}
+ {/* 12.1.12 Sau đó admin nhấn nút “Confirm” */}
                     <button type="submit" className="btn-admin" disabled={loading}>
                         {loading ? "Loading..." : "CONFIRM"}
                     </button>
