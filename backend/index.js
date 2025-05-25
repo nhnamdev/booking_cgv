@@ -974,14 +974,34 @@ app.post("/movieSwap", (req, res) => {
   });
 });
 // API huỷ vé theo ticket ID
-app.post("/cancelOneTicket", (req, res) => {
-  const ticketId = req.body.ticketId;
-  const sql = "DELETE FROM ticket WHERE id = ?";
-  db.query(sql, [ticketId], (err, result) => {
-    if (err) return res.json({ success: false });
-    return res.json({ success: true });
-  });
-});
+const cancelTicket = async (ticketId) => {
+  const confirmCancel = confirm("Bạn có chắc muốn hủy vé này không?");
+  if (!confirmCancel) return;
+
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/cancelTicket`, {
+      ticketId: ticketId,
+    });
+
+    if (res.data.success) {
+      alert("Hủy vé thành công!");
+
+      // Ẩn vé chứa ticketId vừa bị hủy
+      setCusTicketData((prev) =>
+        prev.filter(ticket => {
+          const ids = ticket.ticket_ids.split(',').map(id => id.trim());
+          return !ids.includes(String(ticketId));
+        })
+      );
+    } else {
+      alert("Hủy vé thất bại: " + res.data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Đã xảy ra lỗi khi hủy vé.");
+  }
+};
+
 
 
 // Registration endpoint
