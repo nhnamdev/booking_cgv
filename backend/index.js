@@ -973,6 +973,17 @@ app.post("/movieSwap", (req, res) => {
     });
   });
 });
+// API huỷ vé theo ticket ID
+app.post("/cancelOneTicket", (req, res) => {
+  const ticketId = req.body.ticketId;
+  const sql = "DELETE FROM ticket WHERE id = ?";
+  db.query(sql, [ticketId], (err, result) => {
+    if (err) return res.json({ success: false });
+    return res.json({ success: true });
+  });
+});
+
+
 // Registration endpoint
 app.post('/api/register', (req, res) => {
     const { username, email, password, full_name, phone_number } = req.body;
