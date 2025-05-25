@@ -73,6 +73,29 @@ export const CustomerInfoSection = () => {
 
     fetchData();
   }, [signedPerson]);
+  // Hàm hủy vé
+const cancelTicket = async (ticketId) => {
+  const confirmCancel = confirm("Bạn có chắc muốn hủy vé này không?");
+  if (!confirmCancel) return;
+
+  try {
+    const res = await axios.post(`${import.meta.env.VITE_API_URL}/cancelTicket`, {
+      ticketId: ticketId,
+    });
+
+    if (res.data.success) {
+      alert("Hủy vé thành công!");
+      // Cập nhật lại danh sách vé sau khi xóa
+      setCusTicketData((prev) => prev.filter(ticket => ticket.ticket_ids !== ticketId));
+    } else {
+      alert("Hủy vé thất bại: " + res.data.message);
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Đã xảy ra lỗi khi hủy vé.");
+  }
+};
+
 
   const purchaseHtml = cusTicketData.map((cusTicket, id) => {
     return (
@@ -132,7 +155,18 @@ export const CustomerInfoSection = () => {
                 Purchased at <strong>{cusTicket.purchase_date}</strong>
               </p>
             </div>
+
+            <button
+              className="cancel-ticket-btn"
+              onClick={(e) => {
+                e.preventDefault(); // Ngăn mở trang khi bấm nút (vì đang trong <Link>)
+                cancelTicket(cusTicket.ticket_ids); // Gọi hàm hủy vé
+              }}
+            >
+              Hủy vé
+            </button>
           </div>
+
         </div>
 
         <div
