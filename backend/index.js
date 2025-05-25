@@ -667,156 +667,156 @@ app.post("/showdateAdd", (req, res) => {
     });
   });
 });
-//
-// app.post("/adminMovieAdd", (req, res) => {
-//   //admin revalidation
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-//
-//   const name = req.body.name;
-//   const image_path = req.body.image_path;
-//   const language = req.body.language;
-//   const synopsis = req.body.synopsis;
-//   const rating = req.body.rating;
-//   const duration = req.body.duration;
-//   const top_cast = req.body.top_cast;
-//   const release_date = req.body.release_date;
-//
-//   const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
-//   values
-//   (?,?,?,?,?,?,?,?)`;
-//   const sql2 = "SELECT LAST_INSERT_ID() as last_id";
-//
-//   db.query(sql0, [email, password, "Admin"], (err, data) => {
-//     if (err) return res.json(err);
-//
-//     if (data.length === 0) {
-//       return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
-//     }
-//
-//     db.query(
-//       sql1,
-//       [
-//         name,
-//         image_path,
-//         language,
-//         synopsis,
-//         rating,
-//         duration,
-//         top_cast,
-//         release_date,
-//       ],
-//       (err1, data1) => {
-//         if (err1) return res.json(err1);
-//
-//         db.query(sql2, (err2, data2) => {
-//           if (err2) return res.json(err2);
-//
-//           return res.json(data2);
-//         });
-//       }
-//     );
-//   });
-// });
 
-// app.post("/genreInsert", (req, res) => {
-//   //admin revalidation
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-//
-//   const movieId = req.body.movieId;
-//   const genre = req.body.genre;
-//
-//   const sql = `Insert into movie_genre(movie_id,genre)
-//   values
-//   (?,?)`;
-//
-//   db.query(sql0, [email, password, "Admin"], (err, data) => {
-//     if (err) return res.json(err);
-//
-//     if (data.length === 0) {
-//       return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
-//     }
-//
-//     db.query(sql, [movieId, genre], (err, data) => {
-//       if (err) return res.json(err);
-//
-//       return res.json(data);
-//     });
-//   });
-// });
-//
-// app.post("/directorInsert", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-//
-//   const movieId = req.body.movieId;
-//   const director = req.body.director;
-//
-//   const sql = `Insert into movie_directors(movie_id,director)
-//   values
-//   (?,?)`;
-//
-//   db.query(sql0, [email, password, "Admin"], (err, data) => {
-//     if (err) return res.json(err);
-//
-//     if (data.length === 0) {
-//       return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
-//     }
-//
-//     db.query(sql, [movieId, director], (err, data) => {
-//       if (err) return res.json(err);
-//
-//       return res.json(data);
-//     });
-//   });
-// });
-//
-// app.get("/lastShowDate", (req, res) => {
-//   const sql = `SELECT max(showtime_date) as lastDate FROM showtimes`;
-//
-//   db.query(sql, (err, data) => {
-//     if (err) return res.json(err);
-//
-//     return res.json(data);
-//   });
-// });
+app.post("/adminMovieAdd1", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
 
-// app.post("/showdateAdd", (req, res) => {
-//   const email = req.body.email;
-//   const password = req.body.password;
-//   const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-//
-//   const showDate = req.body.selectedShowDate;
-//   const sql1 = `Insert into showtimes (movie_start_time,show_type,showtime_date,price_per_seat)
-//   values
-//   ('11:00 am','2D',?,350),
-//   ('2:30 pm','3D',?,450),
-//   ('6:00 pm','3D',?,450)`;
-//
-//   const sql2 = "SELECT LAST_INSERT_ID() as last_id";
-//
-//   db.query(sql0, [email, password, "Admin"], (err, data) => {
-//     if (err) return res.json(err);
-//
-//     if (data.length === 0) {
-//       return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
-//     }
-//
-//     db.query(sql1, [showDate, showDate, showDate], (err1, data1) => {
-//       if (err1) return res.json(err1);
-//
-//       db.query(sql2, (err2, data2) => {
-//         if (err2) return res.json(err2);
-//
-//         return res.json(data2);
-//       });
-//     });
-//   });
-// });
+  const name = req.body.name;
+  const image_path = req.body.image_path;
+  const language = req.body.language;
+  const synopsis = req.body.synopsis;
+  const rating = req.body.rating;
+  const duration = req.body.duration;
+  const top_cast = req.body.top_cast;
+  const release_date = req.body.release_date;
+
+  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
+  values
+  (?,?,?,?,?,?,?,?)`;
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(
+      sql1,
+      [
+        name,
+        image_path,
+        language,
+        synopsis,
+        rating,
+        duration,
+        top_cast,
+        release_date,
+      ],
+      (err1, data1) => {
+        if (err1) return res.json(err1);
+
+        db.query(sql2, (err2, data2) => {
+          if (err2) return res.json(err2);
+
+          return res.json(data2);
+        });
+      }
+    );
+  });
+});
+
+app.post("/genreInsert1", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const movieId = req.body.movieId;
+  const genre = req.body.genre;
+
+  const sql = `Insert into movie_genre(movie_id,genre)
+  values
+  (?,?)`;
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql, [movieId, genre], (err, data) => {
+      if (err) return res.json(err);
+
+      return res.json(data);
+    });
+  });
+});
+
+app.post("/directorInsert1", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const movieId = req.body.movieId;
+  const director = req.body.director;
+
+  const sql = `Insert into movie_directors(movie_id,director)
+  values
+  (?,?)`;
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql, [movieId, director], (err, data) => {
+      if (err) return res.json(err);
+
+      return res.json(data);
+    });
+  });
+});
+
+app.get("/lastShowDate1", (req, res) => {
+  const sql = `SELECT max(showtime_date) as lastDate FROM showtimes`;
+
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+
+    return res.json(data);
+  });
+});
+
+app.post("/showdateAdd1", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const showDate = req.body.selectedShowDate;
+  const sql1 = `Insert into showtimes (movie_start_time,show_type,showtime_date,price_per_seat)
+  values
+  ('11:00 am','2D',?,350),
+  ('2:30 pm','3D',?,450),
+  ('6:00 pm','3D',?,450)`;
+
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql1, [showDate, showDate, showDate], (err1, data1) => {
+      if (err1) return res.json(err1);
+
+      db.query(sql2, (err2, data2) => {
+        if (err2) return res.json(err2);
+
+        return res.json(data2);
+      });
+    });
+  });
+});
 
 app.post("/shownInUpdate", (req, res) => {
   const email = req.body.email;
