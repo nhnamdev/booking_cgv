@@ -124,6 +124,7 @@ app.get("/theatres", (req, res) => {
   });
 });
 
+//6.1.6. Hệ thống truy vẫn xuống cơ sỏ dữ liệu để lấy thông tin danh sách phim
 app.post("/showtimes", (req, res) => {
   const theatreName = req.body.theatreName;
   const userGenre = req.body.userGenre;
@@ -152,6 +153,7 @@ app.post("/showtimes", (req, res) => {
       });
 });
 
+//6.1.4. Hệ thống truy vấn xuống cơ sở dữ liệu để lấy thông tin về thể loại phim
 app.get("/genres", (req, res) => {
   const sql = "SELECT DISTINCT genre FROM movie_genre";
 
