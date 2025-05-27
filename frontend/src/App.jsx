@@ -55,6 +55,8 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <Routes key={currentPage.pathname} location={currentPage}>
             <Route path="/" element={<HomePage />} />
+
+              {/*// Xác định địa chỉ /showtimes sẽ dẫn đến ShowTimesPage*/}
             <Route path="/showtimes" element={<ShowtimesPage />} />
             <Route
               element={

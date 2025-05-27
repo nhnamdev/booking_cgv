@@ -125,6 +125,8 @@ export const Navbar = () => {
               Trang chủ
             </Link>
           </li>
+
+          {/* 6.1.1. Người dùng nhấn vào "Lịch chiếu phim sẽ liên kết đến endpoint /showtimes*/}
           <li>
             <Link
               className="nav-item"

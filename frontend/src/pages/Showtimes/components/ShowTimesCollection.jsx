@@ -17,12 +17,16 @@ export const ShowTimesCollection = () => {
 
   const { name: theatreName } = useSelector((store) => store.currentLocation);
   const [searchParams] = useSearchParams();
+
+  // Lấy giá trị genre từ URL search params (nếu có); nếu không có thì mặc định là "All"
   const userGenre = searchParams.get("genre") || "All";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
+
+        // Gửi HTTP GET request đến endpoint `/showtimes` và lưu phản hồi vào biến `response`
         const response = await axios.post(
           `${import.meta.env.VITE_API_URL}/showtimes`,
           {
@@ -96,6 +100,7 @@ export const ShowTimesCollection = () => {
     }
   }
 
+  // 6.1.7. Duyệt qua danh sách movieShowtimes và render mỗi phim thành một thẻ ShowtimesCard để hiển thị ra giao diện
   const showtimesCards = movieShowtimes.map((showtime, idx) => {
     return <ShowtimesCard key={idx} {...showtime} />;
   });
@@ -103,6 +108,8 @@ export const ShowTimesCollection = () => {
   return (
     <section className="section-showtimes">
       <div className="showtimes-collection container">
+
+        {/* 6.1.5. Hiển thị nội dung danh sách phim*/}
         {loading ? (
           <HashLoader cssOverride={override} color="#eb3656" />
         ) : (

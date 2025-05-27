@@ -14,6 +14,7 @@ const HomePage = () => {
       {/*  12.1.0Hệ thống đang ở màn hình trang chủ  (HomePage).*/}
       <TopEdge />
         {/* 12.1.1 Hệ thống render component Navbar (HomePage)*/}
+        {/* 6.1.0. Người dùng khi vừa đăng nhập xong sẽ ở trang HomePage này và trang này có dán components Navbar vào*/}
       <Navbar />
       <HeroSection />
       <HomeCollection />

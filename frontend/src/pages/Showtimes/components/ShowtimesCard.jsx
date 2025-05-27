@@ -101,7 +101,9 @@ export const ShowtimesCard = (props) => {
         </div>
 
         <h2 className="showtimes-title">{props.movie_name}</h2>
-        <button
+
+          {/* 6.1.8. Nhấn vào nút "See details" để xem chi tiết của phim*/}
+          <button
           className="showtimes-details-btn"
           onClick={() => navigate(`/movieDetails/${props.id}`)}
         >
