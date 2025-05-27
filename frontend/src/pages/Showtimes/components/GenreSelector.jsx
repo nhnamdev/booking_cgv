@@ -11,11 +11,14 @@ export const GenreSelector = () => {
     margin: "4.8rem auto",
   };
   const [searchParams, setSearchParams] = useSearchParams();
+  // Lấy giá trị genre từ URL search params (nếu có); nếu không có thì mặc định là "All"
   const userGenre = searchParams.get("genre") || "All";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+
+        // Gửi HTTP GET request đến endpoint `/genres` và lưu phản hồi vào biến `response`
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/genres`
         );
@@ -35,6 +38,7 @@ export const GenreSelector = () => {
     };
   };
 
+  // Duyệt genreData và render từng thể loại dưới dạng radio button có style riêng, cho phép chọn và cập nhật genre đã chọn.
   const genreOptions = genreData?.map(({ genre }, idx) => {
     return (
       <div
@@ -47,9 +51,12 @@ export const GenreSelector = () => {
           id={idx}
           name="Select Genre"
           value={genre}
+
+            // Khi người dùng chọn một thể loại, hàm `setSearchParams` sẽ được gọi để cập nhật genre đã chọn.
           onChange={() => {
             setSearchParams({ genre: genre });
           }}
+            // Radio button sẽ được đánh dấu (checked) nếu `genre === userGenre`.
           checked={genre === userGenre}
         />
 
