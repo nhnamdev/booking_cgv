@@ -26,7 +26,7 @@ export const LoginModal = () => {
 
     setLoginDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
-
+  // hàm getLoginData gửi request đến API
   const getLoginData = async (e) => {
     e.preventDefault();
 
@@ -41,13 +41,17 @@ export const LoginModal = () => {
             password: loginDetails.password,
           }
         );
-
+        // 1.2.2	Frontend tiếp tục gọi login(response.data) để cập nhập trạng thái login cho authSlice.js
         dispatch(login(response.data[0]));
+        // 1.2.5	Khi cập nhật xong trạng thái thì đóng modal login
         dispatch(hideLoginModal());
-
+        // 1.2.4	Khi cập nhật xong trạng thái thì hiển thị thông báo đăng nhập thành công trên trang chủ 
         loginSuccessToast();
+       
       } catch (err) {
+        //1.2.9 Đăng nhập thất bại  chuyển về trang chủ.
         dispatch(hideLoginModal());
+        //1.2.8  Frontend hiển thị thông báo đăng nhập không thành công trên trang chủ.
         loginFailedToast(err.response.data.message);
       } finally {
         setLoading(false);
@@ -60,9 +64,12 @@ export const LoginModal = () => {
   };
 
   return (
+
     <div className="login-form">
+      {/*  1.1.4, 1.1.5: Hệ thống khởi tạo form Login gồm các thông tin của người dùng và hiển thị form để người dùng nhập email, password */}
       <form
         onSubmit={(e) => {
+          // 1.1.8: Khi người dùng nhấn nút Sign in, hàm getLoginData sẽ được gọi
           getLoginData(e);
         }}
       >
@@ -89,7 +96,7 @@ export const LoginModal = () => {
             </svg>
           </button>
         </div>
-
+        {/* 1.1.6: Người dùng nhập email, password vào form */}
         <div className="signup-form-body">
           <div className="signup-form-category">
             <label>
@@ -162,7 +169,7 @@ export const LoginModal = () => {
               </button>
             </div>
           </div>
-
+          {/* 1.1.7: Người dùng nhấn nút Sign in */}
           <button type="submit" className="btn-reg" disabled={loading}>
             {loading ? <BarLoader color="#e6e6e8" /> : "Sign in"}
           </button>

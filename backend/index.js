@@ -1,14 +1,23 @@
+// Dưới đây là cách khởi tạo kết nối DB
+// Import các module cần thiết
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+// Import module dotenv để sử dụng biến môi trường
 require("dotenv").config();
 
+// Kiểm tra xem các biến môi trường đã được định nghĩa chưa
 console.log("ENV loaded:");
 console.log("DB_HOST =", process.env.DB_HOST);
 console.log("DB_NAME =", process.env.DB_NAME);
+
+// Khởi tạo cổng mặc định 7000
 const port = process.env.PORT || 7000;
+
+// Tạo một ứng dụng Express
 const app = express();
 
+// Sử dụng middleware CORS để cho phép truy cập từ các nguồn khác nhau
 app.use(
   cors({
     //Chỉ định các địa chỉ frontend được phép gọi API từ backend
@@ -18,10 +27,11 @@ app.use(
   })
 );
 
+// Parse JSON bodies in the request
 app.use(express.json());
-
+// Khởi tạo biến db để kết nối đến cơ sở dữ liệu
 let db;
-
+// Định nghĩa cấu hình kết nối đến cơ sở dữ liệu
 const configuration = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -32,17 +42,21 @@ const configuration = {
 //  setting connection
 function handleDisconnect() {
   db = mysql.createConnection(configuration);
-
+// Hàm Kết nối đến cơ sở dữ liệu
   db.connect(function (err) {
     if (err) {
+      // Hệ thống hiển thị thông báo: "Lỗi hệ thống. Vui lòng thử lại sau".
       console.log("error when connecting to db:", err);
+      // Nếu có lỗi, thực hiện kết nối lại sau 2 giây
       setTimeout(handleDisconnect, 2000);
     } else {
+      // Nếu kết nối thành công, hiển thị thông báo
       console.log("connection is successful");
     }
   });
   db.on("error", function (err) {
     console.log("db error", err);
+    // Nếu lỗi do kết nối bị đứt, thực hiện kết nối lại
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
       handleDisconnect();
     } else {
@@ -50,15 +64,18 @@ function handleDisconnect() {
     }
   });
 }
+// Gọi hàm kết nối đến cơ sở dữ liệu
 handleDisconnect();
 
 app.get("/", (req, res) => {
   return res.json("Hello Backend Side");
 });
 
+
 // /////
 // HOME
 // /////
+
 
 app.get("/latestMovies", (req, res) => {
   const sql =
@@ -91,9 +108,11 @@ app.get("/locationFeatures", (req, res) => {
   });
 });
 
+
 // /////////
 // SHOWTIMES
 // /////////
+
 
 app.get("/theatres", (req, res) => {
   sql = "SELECT id, name,location FROM theatre";
@@ -143,9 +162,11 @@ app.get("/genres", (req, res) => {
   });
 });
 
+
 // /////////////
 // PAYMENT PAGE
 // /////////////
+
 
 app.post("/showtimesDates", (req, res) => {
   const theatreId = req.body.theatreId;
@@ -282,9 +303,11 @@ app.post("/recentPurchase", (req, res) => {
   });
 });
 
+
 // ////////
 // SIGN UP
 // ////////
+
 
 app.post("/registration", (req, res) => {
   const email = req.body.email;
@@ -305,35 +328,39 @@ app.post("/registration", (req, res) => {
 
       return res
         .status(200)
-        .json({ message: "Congratulations! We created your account" });
+        .json({ message: "Chúc mừng! Tạo tài khoản thành công" });
     }
   );
 });
 
-// /////
-// LOGIN
-// /////
 
+
+// Xử lý yêu cầu POST đến đường dẫn /login
 app.post("/login", (req, res) => {
+  // Lấy email và password từ body của request
   const email = req.body.email;
   const password = req.body.password;
-
+  // 1.1.9	Thư viện ExpressJs thực hiện câu lệnh SELECT kiểm tra người dùng có tồn  trong bảng person hay không?
   const sql = `SELECT email, first_name, person_type, password FROM person WHERE email=? AND password=?`;
 
   db.query(sql, [email, password], (err, data) => {
     if (err) return res.json(err);
-
+    // 1.2.6    Nếu người dùng không tồn tại Database trả về dữ liệu rỗng.
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, User not found!" });
+      //1.2.7    API nhận dữ liệu rỗng từ database trả về lỗi không tìm thấy user dưới dạng json.
+      return res.status(404).json({ message: "Xin lỗi, tài khoản không tồn tại!" });
     }
-
+   // 1.2.0	Nếu người dùng tồn tại Database trả về dữ liệu user.
+   //1.2.1	API nhận được data tiếp tục trả về dữ liệu user dưới dạng json cho frontend.
     return res.json(data);
   });
 });
 
+
 // /////////////////
 // MOVIEDETAILS PAGE
 // /////////////////
+
 
 app.post("/movieDetail", (req, res) => {
   const id = req.body.movieDetailsId;
@@ -387,9 +414,11 @@ app.post("/otherMovies", (req, res) => {
   });
 });
 
+
 // ///////////////////
 // CUSTOMER INFO PAGE
 // ///////////////////
+
 
 app.post("/customerProfile", (req, res) => {
   const email = req.body.email;
@@ -403,6 +432,7 @@ app.post("/customerProfile", (req, res) => {
     return res.json(data);
   });
 });
+
 
 app.post("/customerPurchases", (req, res) => {
   const email = req.body.email;
@@ -441,9 +471,64 @@ app.post("/customerPurchases", (req, res) => {
   });
 });
 
+
 // /////
 // ADMIN
 // /////
+
+// 12.1.14  Backend thêm phim vào data
+
+app.post("/adminMovieAdd", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const name = req.body.name;
+  const image_path = req.body.image_path;
+  const language = req.body.language;
+  const synopsis = req.body.synopsis;
+  const rating = req.body.rating;
+  const duration = req.body.duration;
+  const top_cast = req.body.top_cast;
+  const release_date = req.body.release_date;
+
+  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
+  values
+  (?,?,?,?,?,?,?,?)`;
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(
+        sql1,
+        [
+          name,
+          image_path,
+          language,
+          synopsis,
+          rating,
+          duration,
+          top_cast,
+          release_date,
+        ],
+        (err1, data1) => {
+          if (err1) return res.json(err1);
+
+          db.query(sql2, (err2, data2) => {
+            if (err2) return res.json(err2);
+
+            return res.json(data2);
+          });
+        }
+    );
+  });
+});
 
 app.get("/totalTickets", (req, res) => {
   const sql = `SELECT COUNT(*) AS total_tickets FROM ticket`;
@@ -485,58 +570,6 @@ app.get("/totalTicketPerMovie", (req, res) => {
   });
 });
 
-app.post("/adminMovieAdd", (req, res) => {
-  //admin revalidation
-  const email = req.body.email;
-  const password = req.body.password;
-  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
-
-  const name = req.body.name;
-  const image_path = req.body.image_path;
-  const language = req.body.language;
-  const synopsis = req.body.synopsis;
-  const rating = req.body.rating;
-  const duration = req.body.duration;
-  const top_cast = req.body.top_cast;
-  const release_date = req.body.release_date;
-
-  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
-  values
-  (?,?,?,?,?,?,?,?)`;
-  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
-
-  db.query(sql0, [email, password, "Admin"], (err, data) => {
-    if (err) return res.json(err);
-
-    if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
-    }
-
-    db.query(
-      sql1,
-      [
-        name,
-        image_path,
-        language,
-        synopsis,
-        rating,
-        duration,
-        top_cast,
-        release_date,
-      ],
-      (err1, data1) => {
-        if (err1) return res.json(err1);
-
-        db.query(sql2, (err2, data2) => {
-          if (err2) return res.json(err2);
-
-          return res.json(data2);
-        });
-      }
-    );
-  });
-});
-
 app.post("/genreInsert", (req, res) => {
   //admin revalidation
   const email = req.body.email;
@@ -554,7 +587,7 @@ app.post("/genreInsert", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [movieId, genre], (err, data) => {
@@ -581,7 +614,7 @@ app.post("/directorInsert", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [movieId, director], (err, data) => {
@@ -620,7 +653,157 @@ app.post("/showdateAdd", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql1, [showDate, showDate, showDate], (err1, data1) => {
+      if (err1) return res.json(err1);
+
+      db.query(sql2, (err2, data2) => {
+        if (err2) return res.json(err2);
+
+        return res.json(data2);
+      });
+    });
+  });
+});
+
+app.post("/adminMovieAdd1", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const name = req.body.name;
+  const image_path = req.body.image_path;
+  const language = req.body.language;
+  const synopsis = req.body.synopsis;
+  const rating = req.body.rating;
+  const duration = req.body.duration;
+  const top_cast = req.body.top_cast;
+  const release_date = req.body.release_date;
+
+  const sql1 = `Insert into movie (name,image_path,language,synopsis,rating,duration,top_cast,release_date)
+  values
+  (?,?,?,?,?,?,?,?)`;
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(
+      sql1,
+      [
+        name,
+        image_path,
+        language,
+        synopsis,
+        rating,
+        duration,
+        top_cast,
+        release_date,
+      ],
+      (err1, data1) => {
+        if (err1) return res.json(err1);
+
+        db.query(sql2, (err2, data2) => {
+          if (err2) return res.json(err2);
+
+          return res.json(data2);
+        });
+      }
+    );
+  });
+});
+
+app.post("/genreInsert1", (req, res) => {
+  //admin revalidation
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const movieId = req.body.movieId;
+  const genre = req.body.genre;
+
+  const sql = `Insert into movie_genre(movie_id,genre)
+  values
+  (?,?)`;
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql, [movieId, genre], (err, data) => {
+      if (err) return res.json(err);
+
+      return res.json(data);
+    });
+  });
+});
+
+app.post("/directorInsert1", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const movieId = req.body.movieId;
+  const director = req.body.director;
+
+  const sql = `Insert into movie_directors(movie_id,director)
+  values
+  (?,?)`;
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
+    }
+
+    db.query(sql, [movieId, director], (err, data) => {
+      if (err) return res.json(err);
+
+      return res.json(data);
+    });
+  });
+});
+
+app.get("/lastShowDate1", (req, res) => {
+  const sql = `SELECT max(showtime_date) as lastDate FROM showtimes`;
+
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+
+    return res.json(data);
+  });
+});
+
+app.post("/showdateAdd1", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const sql0 = `SELECT * from person WHERE email = ? and password = ? and person_type = ?`;
+
+  const showDate = req.body.selectedShowDate;
+  const sql1 = `Insert into showtimes (movie_start_time,show_type,showtime_date,price_per_seat)
+  values
+  ('11:00 am','2D',?,350),
+  ('2:30 pm','3D',?,450),
+  ('6:00 pm','3D',?,450)`;
+
+  const sql2 = "SELECT LAST_INSERT_ID() as last_id";
+
+  db.query(sql0, [email, password, "Admin"], (err, data) => {
+    if (err) return res.json(err);
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql1, [showDate, showDate, showDate], (err1, data1) => {
@@ -662,7 +845,7 @@ app.post("/shownInUpdate", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, showIdArr, (err, data) => {
@@ -706,7 +889,7 @@ app.post("/adminShowtimes", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showdate], (err, data) => {
@@ -730,7 +913,7 @@ app.post("/movieReplaceFrom", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showtimeId], (err, data) => {
@@ -754,7 +937,7 @@ app.post("/movieReplaceTo", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [showtimeId], (err, data) => {
@@ -780,7 +963,7 @@ app.post("/movieSwap", (req, res) => {
     if (err) return res.json(err);
 
     if (data.length === 0) {
-      return res.status(404).json({ message: "Sorry, You are not Admin!" });
+      return res.status(404).json({ message: "Xin lỗi, bạn không phải là Admin!" });
     }
 
     db.query(sql, [updatedMovieId, showtime_id, prevMovieId], (err, data) => {
@@ -790,13 +973,24 @@ app.post("/movieSwap", (req, res) => {
     });
   });
 });
+// API huỷ vé theo ticket ID
+app.post("/cancelOneTicket", (req, res) => {
+  const ticketId = req.body.ticketId;
+  const sql = "DELETE FROM ticket WHERE id = ?";
+  db.query(sql, [ticketId], (err, result) => {
+    if (err) return res.json({ success: false });
+    return res.json({ success: true });
+  });
+});
+
+
 // Registration endpoint
 app.post('/api/register', (req, res) => {
     const { username, email, password, full_name, phone_number } = req.body;
 
     // Validate input
     if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Username, email and password are required' });
+        return res.status(400).json({ error: 'Username, email và password là bắt buộc' });
     }
 
     // Check if user already exists
@@ -808,7 +1002,7 @@ app.post('/api/register', (req, res) => {
         }
 
         if (results.length > 0) {
-            return res.status(400).json({ error: 'Username or email already exists' });
+            return res.status(400).json({ error: 'Username hoặc email đã tồn tại' });
         }
 
         // Hash password (you should use bcrypt in production)
@@ -819,11 +1013,11 @@ app.post('/api/register', (req, res) => {
         db.query(insertUserQuery, [username, email, hashedPassword, full_name, phone_number], (err, result) => {
             if (err) {
                 console.error('Database error:', err);
-                return res.status(500).json({ error: 'Failed to create user' });
+                return res.status(500).json({ error: 'Tạo tài khoản thất bại' });
             }
 
             res.status(201).json({
-                message: 'User registered successfully',
+                message: 'Đăng kí tài khoản thành công',
                 userId: result.insertId
             });
         });
@@ -832,5 +1026,5 @@ app.post('/api/register', (req, res) => {
 
 // For local usage
 app.listen(port, () => {
-  console.log(`AshoDekhi backend running on ${port}`);
+  console.log(` backend running on ${port}`);
 });

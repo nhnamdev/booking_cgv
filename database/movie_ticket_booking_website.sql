@@ -1,12 +1,16 @@
-CREATE DATABASE movie_ticket_booking_website
+
+USE movie_ticket_booking_website;
 
 CREATE TABLE `features` (
-  `id` int(11) NOT NULL,
-  `title` varchar(100) DEFAULT NULL,
-  `description` varchar(1000) DEFAULT NULL,
-  `image_path` varchar(100) DEFAULT NULL,
-  `theatre_id` int(11) NOT NULL
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) DEFAULT NULL,
+  `description` VARCHAR(1000) DEFAULT NULL,
+  `image_path` VARCHAR(100) DEFAULT NULL,
+  `theatre_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`)
+  -- , FOREIGN KEY (`theatre_id`) REFERENCES theatres(id) -- Bỏ comment nếu bạn có bảng `theatres`
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 INSERT INTO `features` (`id`, `title`, `description`, `image_path`, `theatre_id`) VALUES
 (1, 'Trải Nghiệm Điện Ảnh Đỉnh Cao', 'Đắm chìm trong hình ảnh sắc nét và âm thanh sống động với công nghệ IMAX hiện đại tại CGV. Màn hình siêu rộng cùng chất lượng trình chiếu đỉnh cao mang đến cảm giác như đang ở giữa những cảnh quay mãn nhãn.', '/Images/features/imax.webp', 1),

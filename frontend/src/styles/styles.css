@@ -2154,6 +2154,20 @@ header {
   color: #ef5e78;
   letter-spacing: 0.5px;
 }
+.cancel-ticket-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: #eb3656;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.cancel-ticket-btn:hover {
+  background-color: #c72b48;
+}
+
 
 .purchase-date-time,
 .purchase-price-create {

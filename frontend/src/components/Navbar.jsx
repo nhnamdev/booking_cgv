@@ -5,6 +5,7 @@ import { HashLink } from "react-router-hash-link";
 import { logout, showLoginModal, showSignModal } from "../reducers/authSlice";
 import { toggleMenuState } from "../reducers/mobileNavSlice";
 
+
 export const Navbar = () => {
   const [navSignOptionsVis, setNavSignOptionsVis] = useState(false);
   let pageName;
@@ -35,7 +36,8 @@ export const Navbar = () => {
     pageName = "showtimes";
   } else if (location.pathname === "/aboutus") {
     pageName = "aboutUs";
-  } else if (location.pathname === "/admin") {
+  }
+  else if (location.pathname === "/admin") {
     pageName = "admin";
   } else {
     pageName = "";
@@ -141,10 +143,15 @@ export const Navbar = () => {
               Liên hệ
             </Link>
           </li>
+
+{/*12.1.2 Hệ thống kiểm tra quyền admin (Navbar) */}
           {isAuthenticated && signedPerson.person_type === "Admin" && (
+// 12.1.3 Hệ thống render Navbar chứa liên kết điều hường “Admin” dành cho người có quyền  quản lý phim. (Navbar)
             <li>
+{/*12.1.4 Sử dụng React Router’s <Link> với prop (to=’ /admin’) để xử lý điêù hướng sang trang AdminPage.*/}
               <Link
                 className="nav-item"
+// 12.1.6 Khi click, React Router chuyển hướng đến route /admin, tải trang AdminPage mà không reload lại trang.
                 to="/admin"
                 style={pageName === "admin" ? selectionTab : {}}
               >
@@ -254,6 +261,7 @@ export const Navbar = () => {
                 <li>
                   <button
                     className="signup-button"
+                
                     onClick={() => {
                       toggleNavSignOptionsVis();
                       dispatch(showSignModal());
@@ -265,7 +273,9 @@ export const Navbar = () => {
                 <li>
                   <button
                     className="login-button"
+                    // 1.1.2	Cài đặt sự kiện click cho button Sign In Button trên NavBar
                     onClick={() => {
+                    // 1.1.3	Người dùng click vào nút SignIn nằm bên góc phải màn hình
                       toggleNavSignOptionsVis();
                       dispatch(showLoginModal());
                     }}
